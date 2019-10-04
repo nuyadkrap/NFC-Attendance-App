@@ -61,7 +61,7 @@
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:background="@color/colorAccent"
-            android:text="강의 검색"
+            android:text="강의 검색()"
             android:layout_gravity="center"
             android:id="@+id/searchButton"
             android:layout_marginLeft="10dp"></Button>
