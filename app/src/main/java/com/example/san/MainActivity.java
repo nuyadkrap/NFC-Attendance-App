@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,5 +40,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    // 두번 뒤로가기 누르면 종료되도록 함
+    private long lastTimeBackPressd;
+
+    @Override
+    public void onBackPressed() {
+        if(System.currentTimeMillis() - lastTimeBackPressd < 1500)
+        {
+            finish();
+            return;
+        }
+        Toast.makeText(this, "'뒤로' 버튼을 한 번 더 눌러 종료합니다.", Toast.LENGTH_SHORT);
+        lastTimeBackPressd = System.currentTimeMillis();
     }
 }
