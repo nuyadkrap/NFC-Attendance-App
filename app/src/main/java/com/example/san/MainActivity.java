@@ -13,8 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tv_id, tv_pass;
 
-    Button btn_attend;
-
+    Button btn_attend, btn_attendance, btn_time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent (MainActivity.this, AttendActivity.class);
                 startActivity (intent);
+            }
+        });
+
+        btn_time = findViewById (R.id.btn_time);
+        btn_time.setOnClickListener (new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent (MainActivity.this, TimetableActivity.class);
+                startActivity (intent2);
+            }
+        });
+
+        btn_attendance = findViewById (R.id.btn_attendance);
+        btn_attendance.setOnClickListener (new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent (MainActivity.this, AttendanceActivity.class);
+                startActivity (intent3);
             }
         });
 

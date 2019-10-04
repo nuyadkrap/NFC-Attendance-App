@@ -11,6 +11,8 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".AttendActivity"></activity>
+        <activity android:name=".AttendanceActivity"></activity>
+        <activity android:name=".TimetableActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
