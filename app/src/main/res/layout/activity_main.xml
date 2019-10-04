@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d1d1d1"
+    android:background="@color/colorPrimary"
     android:padding="10dp"
     tools:context=".MainActivity">
 
@@ -16,7 +16,7 @@
         android:layout_marginLeft="9dp"
         android:layout_marginEnd="9dp"
         android:layout_marginRight="9dp"
-        android:background="#80ffffff"
+        android:background="#80FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="아이디 :"
+            android:text="학번 :"
             android:textColor="#333333"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="비밀번호 :"
+            android:text="이름 :"
             android:textColor="#333333"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
         android:layout_marginEnd="9dp"
         android:layout_marginRight="9dp"
         android:layout_marginBottom="9dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,68 +108,30 @@
             android:id="@+id/btn_attend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
+            android:layout_gravity="center"
             android:layout_marginTop="100dp"
-            android:background="@drawable/at"
+            android:text="출석체크"
             tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="445dp"
-            style="?android:attr/borderlessButtonStyle"
-            />
+            tools:layout_editor_absoluteY="445dp" />
 
         <Button
             android:id="@+id/btn_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginTop="100dp"
-            android:background="@drawable/tt"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="시간표"
             tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="445dp"
-            style="?android:attr/borderlessButtonStyle"
-
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
-        android:layout_marginBottom="9dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            tools:layout_editor_absoluteY="445dp" />
 
         <Button
             android:id="@+id/btn_attendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
-            android:background="@drawable/ad"
             android:layout_marginTop="30dp"
+            android:text="출석확인"
             tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="445dp"
-            style="?android:attr/borderlessButtonStyle"
-            />
-
-        <Button
-            android:id="@+id/btn_course"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/cs"
-            tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="445dp"
-            style="?android:attr/borderlessButtonStyle"
-            />
+            tools:layout_editor_absoluteY="445dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
