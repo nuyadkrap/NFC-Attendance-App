@@ -9,6 +9,6 @@ public class AttendActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_courselist);
+        setContentView(R.layout.activity_attend);
     }
 }
