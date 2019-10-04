@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CourseListActivity">
+    tools:context=".CourseFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,11 +23,18 @@
             android:layout_marginLeft="10dp"></Spinner>
 
         <Spinner
-            android:layout_width="120dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:id="@+id/termSpinner"></Spinner>
+
+        <Spinner
+            android:id="@+id/areaSpinner"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"></Spinner>
 
     </LinearLayout>
 
@@ -41,14 +48,7 @@
         android:paddingRight="10dp">
 
         <Spinner
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/areaSpinner"></Spinner>
-
-        <Spinner
-            android:layout_width="150dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
