@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tv_id, tv_pass;
 
-    Button btn_attend, btn_attendance, btn_time;
+    Button btn_attend, btn_attendance, btn_time, btn_course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity (intent3);
             }
         });
+
+        btn_course = findViewById (R.id.btn_course);
+        btn_course.setOnClickListener (new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                Intent intent4 = new Intent (MainActivity.this, CourseListActivity.class);
+                startActivity (intent4);
+            }
+        });
+
 
     }
 
