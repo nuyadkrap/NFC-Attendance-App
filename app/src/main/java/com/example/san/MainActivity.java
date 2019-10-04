@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tv_id, tv_pass;
+    private TextView tv_id, tv_name;
 
     Button btn_attend, btn_attendance, btn_time;
 
@@ -21,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tv_id = findViewById(R.id.tv_id);
-        tv_pass = findViewById(R.id.tv_pass);
+        tv_name = findViewById(R.id.tv_name);
 
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
-        String userPass = intent.getStringExtra("userPass");
+        String userName = intent.getStringExtra("userName");
 
         tv_id.setText(userID);
-        tv_pass.setText(userPass);
+        tv_name.setText(userName);
 
         btn_attend = findViewById (R.id.btn_attend);
         btn_attend.setOnClickListener (new View.OnClickListener ( ) {
