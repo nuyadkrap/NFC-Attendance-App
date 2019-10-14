@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="university">
+        <item>공과대학</item>
+    </string-array>
     <string-array name="major">
         <item>전자전기공학부</item>
         <item>전자전기공학전공</item>
@@ -12,16 +15,14 @@
         <item>화학공학과</item>
     </string-array>
     <string-array name="year">
-        <item>2019년도</item>
+        <item>2019</item>
     </string-array>
     <string-array name="term">
         <item>1학기</item>
-        <item>여름학기</item>
         <item>2학기</item>
-        <item>겨울학기</item>
     </string-array>
     <string-array name="area">
-        <item>교양및기타</item>
-        <item>전공</item>
+        <item>전공필수</item>
+        <item>공학소양</item>
     </string-array>
 </resources>

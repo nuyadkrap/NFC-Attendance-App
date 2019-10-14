@@ -68,7 +68,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="TextView"
+            android:text="32151636"
             android:textColor="#333333"
             android:textSize="30sp" />
     </LinearLayout>
@@ -104,7 +104,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="TextView"
+                android:text="박다윤"
                 android:textColor="#333333"
                 android:textSize="30sp" />
 
