@@ -3,13 +3,16 @@ package com.example.san;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -17,6 +20,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CourseListActivity extends AppCompatActivity {
 
@@ -35,6 +41,10 @@ public class CourseListActivity extends AppCompatActivity {
     private String courseTerm = "";
     private String courseArea = "";
     private String courseMajor = "";
+
+    private ListView courseListView;
+    private CourseListAdapter adapter;
+    private List<Course> courseList;
 
 
     @Override
@@ -59,6 +69,10 @@ public class CourseListActivity extends AppCompatActivity {
         areaAdapter =  new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.area));
         areaSpinner.setAdapter(areaAdapter);
 
+        courseListView = (ListView) findViewById(R.id.courseListView);
+        courseList = new ArrayList<Course>();
+        adapter = new CourseListAdapter(getApplicationContext(), courseList, this);
+        courseListView.setAdapter(adapter);
 
         Button searchButton = (Button) findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +99,11 @@ public class CourseListActivity extends AppCompatActivity {
                             "&courseMajor=" + URLEncoder.encode(majorSpinner.getSelectedItem().toString(), "UTF-8");
                     System.out.println("222");
                     System.out.println(target);
+                    System.out.println(URLEncoder.encode(yearSpinner.getSelectedItem().toString().substring(0, 4), "UTF-8"));
+                    System.out.println(URLEncoder.encode(areaSpinner.getSelectedItem().toString(), "UTF-8"));
+                    System.out.println(URLDecoder.decode(areaSpinner.getSelectedItem().toString(), "UTF-8"));
+                    System.out.println(URLDecoder.decode(termSpinner.getSelectedItem().toString(), "UTF-8"));
+                    System.out.println(URLDecoder.decode(majorSpinner.getSelectedItem().toString(), "UTF-8"));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -119,15 +138,53 @@ public class CourseListActivity extends AppCompatActivity {
             @Override
             public void onPostExecute(String result) {
                 try {
-                    AlertDialog dialog;
-                    System.out.println("sss");
-                    System.out.println(result);
-                    System.out.println(CourseListActivity.this);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CourseListActivity.this);
-                    dialog = builder.setMessage(result)
-                            .setPositiveButton("확인", null)
-                            .create();
-                    dialog.show();
+                    courseList.clear();
+                    JSONObject jsonObject = new JSONObject(result);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
+                    int courseID;
+                    String courseUniversity;
+                    int courseYear;
+                    String courseTerm;
+                    String courseArea;
+                    String courseMajor;
+                    String courseGrade;
+                    String courseTitle;
+                    String courseCredit;
+                    int courseDivide;
+                    String courseProfessor;
+                    String courseTime;
+                    String courseRoom;
+                    while (count < jsonArray.length())
+                    {
+                        JSONObject object = jsonArray.getJSONObject(count);
+                        courseID = object.getInt("courseID");
+                        courseUniversity = object.getString("courseUniversity");
+                        courseYear = object.getInt("courseYear");
+                        courseTerm = object.getString("courseTerm");
+                        courseArea = object.getString("courseArea");
+                        courseMajor = object.getString("courseMajor");
+                        courseGrade = object.getString("courseGrade");
+                        courseTitle = object.getString("courseTitle");
+                        courseCredit = object.getString("courseCredit");
+                        courseDivide = object.getInt("courseDivide");
+                        courseProfessor = object.getString("courseProfessor");
+                        courseTime = object.getString("courseTime");
+                        courseRoom = object.getString("courseRoom");
+                        Course course = new Course(courseID, courseUniversity, courseYear, courseTerm, courseArea, courseMajor, courseGrade, courseTitle, courseCredit, courseDivide, courseProfessor, courseTime, courseRoom);
+                        courseList.add(course);
+                        count++;
+                    }
+                    if(count == 0)
+                    {
+                        AlertDialog dialog;
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CourseListActivity.this);
+                        dialog = builder.setMessage("조회된 강의가 없습니다.\n날짜를 확인하세요.")
+                                .setNegativeButton("확인", null)
+                                .create();
+                        dialog.show();
+                    }
+                    adapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
