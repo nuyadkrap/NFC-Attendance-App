@@ -81,7 +81,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
-            android:text="나의 출석체크"
+            android:text="나의 출석체크 "
             tools:layout_editor_absoluteX="160dp"
             tools:layout_editor_absoluteY="34dp" />
 
