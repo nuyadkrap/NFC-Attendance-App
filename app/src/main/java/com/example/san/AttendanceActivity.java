@@ -12,3 +12,4 @@ public class AttendanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attendance);
     }
 }
+

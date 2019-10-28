@@ -16,109 +16,150 @@
             android:layout_height="400dp"
             android:background="@color/colorPrimary"
             android:orientation="vertical">
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/nfcc"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="태그하세요"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            >        </TextView>
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/nfcc"/>
+
+            <TextView
+                android:id="@+id/before_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:text="태그하세요"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"></TextView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginLeft="9dp"
             android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
-            android:orientation="horizontal">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="학번 :"
-            android:textColor="#333333"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/tv_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="32162488"
-            android:textColor="#333333"
-            android:textSize="30sp" />
-    </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="9dp"
             android:layout_marginLeft="9dp"
-            android:layout_marginEnd="9dp"
             android:layout_marginRight="9dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/textView"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_gravity="center"-->
+            <!--            android:layout_marginStart="8dp"-->
+            <!--            android:layout_marginLeft="8dp"-->
+            <!--            android:layout_marginEnd="8dp"-->
+            <!--            android:layout_marginRight="8dp"-->
+            <!--            android:text="학번 :"-->
+            <!--            android:textColor="#333333"-->
+            <!--            android:textSize="30sp" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_id"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_gravity="center"-->
+            <!--            android:layout_marginStart="8dp"-->
+            <!--            android:layout_marginLeft="8dp"-->
+            <!--            android:layout_marginEnd="8dp"-->
+            <!--            android:layout_marginRight="8dp"-->
+            <!--            android:text="32151636"-->
+            <!--            android:textColor="#333333"-->
+            <!--            android:textSize="30sp" />-->
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/courseRoom"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="이름 :"
-            android:textColor="#333333"
-            android:textSize="30sp" />
+            android:layout_marginTop="0dp"
+            android:text="나의 출석체크"
+            tools:layout_editor_absoluteX="160dp"
+            tools:layout_editor_absoluteY="34dp" />
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="심지연"
-                android:textColor="#333333"
-                android:textSize="30sp" />
+        <TextView
+            android:id="@+id/tableNum"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:text=""
+            tools:layout_editor_absoluteX="160dp"
+            tools:layout_editor_absoluteY="34dp"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="9dp"
-                android:layout_marginLeft="9dp"
-                android:layout_marginEnd="9dp"
-                android:layout_marginRight="9dp"
-                android:orientation="horizontal">
+        <TextView
+            android:id="@+id/startTime"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:text=""
+            tools:layout_editor_absoluteX="160dp"
+            tools:layout_editor_absoluteY="34dp"/>
 
-            </LinearLayout>
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginStart="9dp"-->
+        <!--            android:layout_marginLeft="9dp"-->
+        <!--            android:layout_marginEnd="9dp"-->
+        <!--            android:layout_marginRight="9dp"-->
+        <!--            android:orientation="horizontal">-->
+        <!--&lt;!&ndash;        <TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:id="@+id/textView3"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_marginStart="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_marginLeft="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_marginEnd="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_marginRight="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:text="이름 :"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:textColor="#333333"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:textSize="30sp" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:id="@+id/tv_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginStart="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginLeft="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginEnd="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginRight="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:text="박다윤"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:textColor="#333333"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:textSize="30sp" />&ndash;&gt;-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/info"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="50dp"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                android:text="나의 출석현황"-->
+        <!--                tools:layout_editor_absoluteX="160dp"-->
+        <!--                tools:layout_editor_absoluteY="74dp" />-->
+
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                android:layout_marginStart="9dp"-->
+        <!--                android:layout_marginLeft="9dp"-->
+        <!--                android:layout_marginEnd="9dp"-->
+        <!--                android:layout_marginRight="9dp"-->
+        <!--                android:orientation="horizontal">-->
+
+        <!--            </LinearLayout>-->
     </LinearLayout>
-    </LinearLayout>
+    <!--    </LinearLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -291,7 +291,7 @@ public class Schedule {
         }
     }
 
-    public void setting(TextView[] monday, TextView[] tuesday, TextView[] wednesday, TextView[] thursday, TextView[] friday, Context context) {
+    public void setting(AutoResizeTextView[] monday, AutoResizeTextView[] tuesday, AutoResizeTextView[] wednesday, AutoResizeTextView[] thursday, AutoResizeTextView[] friday, Context context) {
         for(int i = 0; i < 13; i++)
         {
             if(!this.monday[i].equals(""))
@@ -299,26 +299,51 @@ public class Schedule {
                 monday[i].setText(this.monday[i]);
                 monday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
             }
+            else
+            {
+                monday[i].setText("가나다라마바사아자차");
+            }
             if(!this.tuesday[i].equals(""))
             {
                 tuesday[i].setText(this.tuesday[i]);
                 tuesday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+            }
+            else
+            {
+                tuesday[i].setText("가나다라마바사아자차");
             }
             if(!this.wednesday[i].equals(""))
             {
                 wednesday[i].setText(this.wednesday[i]);
                 wednesday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
             }
+            else
+            {
+                wednesday[i].setText("가나다라마바사아자차");
+            }
             if(!this.thursday[i].equals(""))
             {
                 thursday[i].setText(this.thursday[i]);
                 thursday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+            }
+            else
+            {
+                thursday[i].setText("가나다라마바사아자차");
             }
             if(!this.friday[i].equals(""))
             {
                 friday[i].setText(this.friday[i]);
                 friday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
             }
+            else
+            {
+                friday[i].setText("가나다라마바사아자차");
+            }
+            monday[i].resizeText();
+            tuesday[i].resizeText();
+            wednesday[i].resizeText();
+            thursday[i].resizeText();
+            friday[i].resizeText();
         }
     }
 }

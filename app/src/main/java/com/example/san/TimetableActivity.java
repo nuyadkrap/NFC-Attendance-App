@@ -18,11 +18,11 @@ import java.net.URLEncoder;
 
 public class TimetableActivity extends AppCompatActivity {
 
-    private TextView monday[] = new TextView[13];
-    private TextView tuesday[] = new TextView[13];
-    private TextView wednesday[] = new TextView[13];
-    private TextView thursday[] = new TextView[13];
-    private TextView friday[] = new TextView[13];
+    private AutoResizeTextView monday[] = new AutoResizeTextView[13];
+    private AutoResizeTextView tuesday[] = new AutoResizeTextView[13];
+    private AutoResizeTextView wednesday[] = new AutoResizeTextView[13];
+    private AutoResizeTextView thursday[] = new AutoResizeTextView[13];
+    private AutoResizeTextView friday[] = new AutoResizeTextView[13];
     private Schedule schedule = new Schedule();
 
     @Override
@@ -58,11 +58,11 @@ public class TimetableActivity extends AppCompatActivity {
 
         for(int i=0; i<13; i++)
         {
-            monday[i] = (TextView) findViewById(mon_cell[i]);
-            tuesday[i] = (TextView) findViewById(tue_cell[i]);
-            wednesday[i] = (TextView) findViewById(wed_cell[i]);
-            thursday[i] = (TextView) findViewById(thu_cell[i]);
-            friday[i] = (TextView) findViewById(fri_cell[i]);
+            monday[i] = (AutoResizeTextView) findViewById(mon_cell[i]);
+            tuesday[i] = (AutoResizeTextView) findViewById(tue_cell[i]);
+            wednesday[i] = (AutoResizeTextView) findViewById(wed_cell[i]);
+            thursday[i] = (AutoResizeTextView) findViewById(thu_cell[i]);
+            friday[i] = (AutoResizeTextView) findViewById(fri_cell[i]);
         }
 
         class BackgroundTask extends AsyncTask<Void, Void, String>
