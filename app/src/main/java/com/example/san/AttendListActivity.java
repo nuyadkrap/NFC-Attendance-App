@@ -22,7 +22,7 @@ import java.net.URL;
 
 
 public class AttendListActivity extends AppCompatActivity {
-
+    //test
 
     private ListView listView;
     private AttendListAdapter adapter;
