@@ -8,24 +8,6 @@ public class AttendList {
     String courseRoom;
     String courseTime;
 
-    /*
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getCourseID() {
-        return courseID;
-    }
-
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
-    }
-    */
-
     public String getCourseTitle() {
         return courseTitle;
     }
@@ -50,9 +32,7 @@ public class AttendList {
         this.courseTime = courseTime;
     }
 
-    public AttendList(/*String userID, String courseID, */ String courseTitle, String courseRoom, String courseTime) {
-      //  this.userID = userID;
-      //  this.courseID = courseID;
+    public AttendList(String courseTitle, String courseRoom, String courseTime) {
         this.courseTitle = courseTitle;
         this.courseRoom = courseRoom;
         this.courseTime = courseTime;

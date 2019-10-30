@@ -13,7 +13,6 @@ import java.util.List;
 
 public class AttendListAdapter extends BaseAdapter {
 
-
     private Context context;
     private List<AttendList> AttendList;
 
@@ -43,7 +42,7 @@ public class AttendListAdapter extends BaseAdapter {
     //가장 중요한 부분
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View v = View.inflate(context, R.layout.activity_attendlist, null);
+        View v = View.inflate(context, R.layout.attendlist, null);
 
         //뷰에 다음 컴포넌트들을 연결시켜줌
        // TextView userID = (TextView)v.findViewById(R.id.userID);

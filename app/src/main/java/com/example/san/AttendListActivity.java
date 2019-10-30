@@ -1,5 +1,6 @@
 package com.example.san;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
@@ -10,6 +11,8 @@ import android.content.Intent;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +27,11 @@ import java.net.URL;
 public class AttendListActivity extends AppCompatActivity {
     //test
 
-    private ListView listView;
+    private ListView attend_ListView;
     private AttendListAdapter adapter;
     private List<AttendList> AttendList;
+    private String userID = MainActivity.userID;
+    BackgroundTask task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,96 +41,92 @@ public class AttendListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        listView = (ListView) findViewById(R.id.listView);
+        attend_ListView = (ListView) findViewById(R.id.attend_ListView);
         AttendList = new ArrayList<AttendList>();
 
         //어댑터 초기화부분 userList와 어댑터를 연결해준다.
         adapter = new AttendListAdapter(getApplicationContext(), AttendList);
-        listView.setAdapter(adapter);
+        attend_ListView.setAdapter(adapter);
 
-        try {
-            //intent로 값을 가져옵니다 이때 JSONObject타입으로 가져옵니다
-            JSONObject jsonObject = new JSONObject(intent.getStringExtra("AttendList"));
-
-
-            //List.php 웹페이지에서 response라는 변수명으로 JSON 배열을 만들었음..
-            JSONArray jsonArray = jsonObject.getJSONArray("response");
-            int count = 0;
-
-            String /*userID, courseID,*/ courseTitle, courseRoom, courseTime;
-
-            //JSON 배열 길이만큼 반복문을 실행
-            while (count < jsonArray.length()) {
-                //count는 배열의 인덱스를 의미
-                JSONObject object = jsonArray.getJSONObject(count);
-
-                // userID = object.getString("userID");//여기서 ID가 대문자임을 유의
-                courseTitle = object.getString("courseTitle");
-                courseRoom = object.getString("courseRoom");
-                courseTime = object.getString("courseTime");
-
-                //값들을 User클래스에 묶어줍니다
-                AttendList attendList = new AttendList(courseTitle, courseRoom, courseTime);
-                AttendList.add(attendList);//리스트뷰에 값을 추가해줍니다
-                count++;
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        task = new BackgroundTask();
+        task.execute();
 
     }
 
-    class BackgroundTask extends AsyncTask<Void, Void, String> {
+    class BackgroundTask extends AsyncTask<Void, Void, String>
+    {
         String target;
 
         @Override
-        protected void onPreExecute() {
-            //List.php은 파싱으로 가져올 웹페이지
-            target = "http://san19.dothome.co.kr/AttendList.php";
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-
+        protected  void onPreExecute() {
             try {
-                URL url = new URL(target);//URL 객체 생성
-
-                //URL을 이용해서 웹페이지에 연결하는 부분
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-                //바이트단위 입력스트림 생성 소스는 httpURLConnection
-                InputStream inputStream = httpURLConnection.getInputStream();
-
-                //웹페이지 출력물을 버퍼로 받음 버퍼로 하면 속도가 더 빨라짐
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String temp;
-
-                //문자열 처리를 더 빠르게 하기 위해 StringBuilder클래스를 사용함
-                StringBuilder stringBuilder = new StringBuilder();
-
-                //한줄씩 읽어서 stringBuilder에 저장함
-                while ((temp = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(temp + "\n");//stringBuilder에 넣어줌
-                }
-
-                //사용했던 것도 다 닫아줌
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return stringBuilder.toString().trim();//trim은 앞뒤의 공백을 제거함
+                target = "http://san19.dothome.co.kr/AttendList.php?userID=" + URLEncoder.encode(userID, "UTF-8");
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return null;
-
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
+        protected String doInBackground(Void... voids) {
+            try {
+                URL url = new URL(target);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));//getInputStream 으로 받은 데이터중, 문자(char)만 필터링하는 과정.
+                String temp;
+                StringBuilder stringBuilder = new StringBuilder();
+                while((temp = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(temp + "\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return stringBuilder.toString().trim();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) { super.onProgressUpdate(); }
+
+        @Override
+        public void onPostExecute(String result) {
+            try {
+                AttendList.clear();
+                JSONObject jsonObject = new JSONObject(result);
+                JSONArray jsonArray = jsonObject.getJSONArray("response");
+                int count = 0;
+
+                String courseTitle;
+                String courseTime;
+                String courseRoom;
+                while (count < jsonArray.length())
+                {
+                    JSONObject object = jsonArray.getJSONObject(count);
+
+                    courseTitle = object.getString("courseTitle");
+                    courseTime = object.getString("courseTime");
+                    courseRoom = object.getString("courseRoom");
+                    AttendList attendList = new AttendList(courseTitle, courseTime, courseRoom);
+                    AttendList.add(attendList);
+                    count++;
+                }
+                if(count == 0)
+                {
+                    AlertDialog dialog;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AttendListActivity.this);
+                    dialog = builder.setMessage("조회된 강의가 없습니다.\n강의를 추가하세요.")
+                            .setNegativeButton("확인", null)
+                            .create();
+                    dialog.show();
+                }
+                adapter.notifyDataSetChanged();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
 
