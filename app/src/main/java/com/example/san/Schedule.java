@@ -208,7 +208,7 @@ public class Schedule {
     public void addSchedule(String scheduleText, String courseTitle, String courseProfessor) {
         String professor;
         if(courseProfessor.equals("")){ professor = ""; }
-        else { professor = "(" + courseProfessor + ")"; }
+        else { professor = ""; }
         int temp;
         if((temp = scheduleText.indexOf("월")) > -1)
         {
@@ -292,52 +292,82 @@ public class Schedule {
     }
 
     public void setting(AutoResizeTextView[] monday, AutoResizeTextView[] tuesday, AutoResizeTextView[] wednesday, AutoResizeTextView[] thursday, AutoResizeTextView[] friday, Context context) {
+        int maxLength = 0;
+        String maxString = "";
+        for(int i = 0; i < 13; i++)
+        {
+            if(this.monday[i].length() >maxLength)
+            {
+                maxLength = this.monday[i].length();
+                maxString = this.monday[i];
+            }
+            if(this.tuesday[i].length() >maxLength)
+            {
+                maxLength = this.tuesday[i].length();
+                maxString = this.tuesday[i];
+            }
+            if(this.wednesday[i].length() >maxLength)
+            {
+                maxLength = this.wednesday[i].length();
+                maxString = this.wednesday[i];
+            }
+            if(this.thursday[i].length() >maxLength)
+            {
+                maxLength = this.thursday[i].length();
+                maxString = this.thursday[i];
+            }
+            if(this.friday[i].length() >maxLength)
+            {
+                maxLength = this.friday[i].length();
+                maxString = this.friday[i];
+            }
+        }
         for(int i = 0; i < 13; i++)
         {
             if(!this.monday[i].equals(""))
             {
                 monday[i].setText(this.monday[i]);
-                monday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+                monday[i].setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
             }
             else
             {
-                monday[i].setText("가나다라마바사아자차");
+                monday[i].setText(maxString);
             }
             if(!this.tuesday[i].equals(""))
             {
                 tuesday[i].setText(this.tuesday[i]);
-                tuesday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+                tuesday[i].setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
             }
             else
             {
-                tuesday[i].setText("가나다라마바사아자차");
+                tuesday[i].setText(maxString);
             }
             if(!this.wednesday[i].equals(""))
             {
                 wednesday[i].setText(this.wednesday[i]);
-                wednesday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+                wednesday[i].setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
             }
             else
             {
-                wednesday[i].setText("가나다라마바사아자차");
+                wednesday[i].setText(maxString);
             }
             if(!this.thursday[i].equals(""))
             {
                 thursday[i].setText(this.thursday[i]);
-                thursday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+                thursday[i].setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
             }
             else
             {
-                thursday[i].setText("가나다라마바사아자차");
+                thursday[i].setText(maxString);
             }
             if(!this.friday[i].equals(""))
             {
                 friday[i].setText(this.friday[i]);
-                friday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+                friday[i].setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
             }
             else
             {
-                friday[i].setText("가나다라마바사아자차");
+                friday[i].setText(maxString);
             }
             monday[i].resizeText();
             tuesday[i].resizeText();

@@ -106,9 +106,9 @@ public class CourseListActivity extends AppCompatActivity {
                     System.out.println(URLDecoder.decode(majorSpinner.getSelectedItem().toString(), "UTF-8"));
 
                 } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+            e.printStackTrace();
+        }
+        }
 
             @Override
             protected String doInBackground(Void... voids) {
