@@ -13,9 +13,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv_id, tv_name;
-    public static String userID;
+    public static String userID, userState;
 
-    Button btn_attend, btn_attendance, btn_time, btn_course;
+    Button btn_attend, btn_attendance, btn_time, btn_course, notice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+
         userID = getIntent().getStringExtra("userID");
+        userState = getIntent().getStringExtra("userState");
         tv_id = findViewById(R.id.tv_id);
         tv_name = findViewById(R.id.tv_name);
 
@@ -33,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
         tv_id.setText(userID);
         tv_name.setText(userName);
+
+        notice = findViewById (R.id.notice);
+
+        if(userState.equals("교수")){
+            notice.setVisibility(View.VISIBLE);
+        }
 
         btn_attend = findViewById (R.id.btn_attend);
         btn_attend.setOnClickListener (new View.OnClickListener ( ) {
@@ -67,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent4 = new Intent (MainActivity.this, CourseListActivity.class);
                 startActivity (intent4);
+            }
+        });
+
+
+        notice.setOnClickListener (new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                Intent intent5 = new Intent (MainActivity.this, NoticeActivity.class);
+                startActivity (intent5);
             }
         });
 

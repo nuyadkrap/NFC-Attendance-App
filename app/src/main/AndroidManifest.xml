@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AttendListActivity"></activity>
+        <activity android:name=".NoticeActivity"></activity>
+        <activity android:name=".AttendListActivity" />
         <activity android:name=".AttendActivity" />
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".TimetableActivity" />
@@ -25,8 +26,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
     </application>
-    <uses-permission android:name="android.permission.NFC" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.NFC" />
 
 </manifest>
