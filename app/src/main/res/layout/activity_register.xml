@@ -100,6 +100,8 @@
         app:layout_constraintEnd_toEndOf="@+id/et_pass"
         app:layout_constraintStart_toStartOf="@+id/et_id"
         app:layout_constraintTop_toBottomOf="@+id/et_pass" />
+
+
 <!--
     <EditText
         android:id="@+id/et_major"
@@ -141,7 +143,31 @@
 
         </Spinner>
 
-    <Button
+        <RadioGroup
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/stateGroup"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/stateProf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_weight="1"
+                android:text="교수" />
+
+            <RadioButton
+                android:id="@+id/stateStu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="학생" />
+        </RadioGroup>
+
+        <Button
         android:id="@+id/btn_register"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
@@ -156,7 +182,7 @@
         app:layout_constraintStart_toStartOf="@+id/et_major"
         app:layout_constraintTop_toBottomOf="@+id/et_major" />
 
-        </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

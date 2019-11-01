@@ -24,5 +24,6 @@
     <string-array name="area">
         <item>전공필수</item>
         <item>공학소양</item>
+        <item>전공선택</item>
     </string-array>
 </resources>

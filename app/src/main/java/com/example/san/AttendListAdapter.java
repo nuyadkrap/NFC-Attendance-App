@@ -45,14 +45,14 @@ public class AttendListAdapter extends BaseAdapter {
         View v = View.inflate(context, R.layout.attendlist, null);
 
         //뷰에 다음 컴포넌트들을 연결시켜줌
-       // TextView userID = (TextView)v.findViewById(R.id.userID);
-       // TextView courseID = (TextView)v.findViewById(R.id.courseID);
+        // TextView userID = (TextView)v.findViewById(R.id.userID);
+        // TextView courseID = (TextView)v.findViewById(R.id.courseID);
         TextView courseTitle = (TextView)v.findViewById(R.id.courseTitle);
         TextView courseRoom = (TextView)v.findViewById(R.id.courseRoom);
         TextView courseTime = (TextView)v.findViewById(R.id.courseTime) ;
 
 
-      //  userID.setText(userList.get(i).getUserID());
+        //  userID.setText(userList.get(i).getUserID());
         courseTitle.setText(AttendList.get(i).getCourseTitle());
         courseRoom.setText(AttendList.get(i).getCourseRoom());
         courseTime.setText(AttendList.get(i).getCourseTime());

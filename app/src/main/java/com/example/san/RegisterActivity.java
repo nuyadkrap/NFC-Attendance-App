@@ -1,5 +1,6 @@
 package com.example.san;
 
+import androidx.annotation.IdRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,25 +24,32 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText et_id, et_pass, et_name, et_major;
+    private EditText et_id, et_pass, et_name;
     private Spinner spinner;
     private Button btn_register;
     private ArrayAdapter adapter;
     private AlertDialog dialog;
+    private RadioGroup rg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        spinner = (Spinner)findViewById( R.id.et_major );
+
+        spinner = findViewById( R.id.et_major );
         adapter = ArrayAdapter.createFromResource(this, R.array.major, android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
 
         et_id = findViewById(R.id.et_id);
         et_pass = findViewById(R.id.et_pass);
         et_name = findViewById(R.id.et_name);
+        
+        rg = findViewById(R.id.stateGroup) ;
+        
 
         btn_register = findViewById(R.id.btn_register);
+
         btn_register.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -48,8 +58,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String userPassword = et_pass.getText().toString();
                 String userName = et_name.getText().toString();
                 String userMajor = spinner.getSelectedItem().toString();
+                
+                RadioButton rd = findViewById(rg.getCheckedRadioButtonId());
+                String userState = rd.getText().toString();
 
-                if(userID.equals("") || userPassword.equals("") || userName.equals("") || userMajor.equals("")) {
+                if(userID.equals("") || userPassword.equals("") || userName.equals("") || userMajor.equals("") || userState.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                     dialog = builder.setMessage("빈칸없이 입력해 주세요")
                             .setNegativeButton("확인", null)
@@ -80,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 };
-                RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userName, userMajor, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userName, userMajor, userState, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
 
