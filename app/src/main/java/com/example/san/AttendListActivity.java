@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.Intent;
 
@@ -47,6 +49,18 @@ public class AttendListActivity extends AppCompatActivity {
         //어댑터 초기화부분 userList와 어댑터를 연결해준다.
         adapter = new AttendListAdapter(getApplicationContext(), AttendList);
         attend_ListView.setAdapter(adapter);
+
+        attend_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), AttendActivity.class);
+                intent.putExtra("course_id", AttendList.get(position).courseID);
+                intent.putExtra("title", AttendList.get(position).courseTitle);
+                intent.putExtra("room", AttendList.get(position).courseRoom);
+                intent.putExtra("time", AttendList.get(position).courseTime);
+                startActivity(intent);
+            }
+        });
 
         task = new BackgroundTask();
         task.execute();
@@ -100,6 +114,7 @@ public class AttendListActivity extends AppCompatActivity {
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
 
+                String courseID;
                 String courseTitle;
                 String courseTime;
                 String courseRoom;
@@ -107,10 +122,11 @@ public class AttendListActivity extends AppCompatActivity {
                 {
                     JSONObject object = jsonArray.getJSONObject(count);
 
+                    courseID = object.getString("courseID");
                     courseTitle = object.getString("courseTitle");
                     courseTime = object.getString("courseTime");
                     courseRoom = object.getString("courseRoom");
-                    AttendList attendList = new AttendList(courseTitle, courseTime, courseRoom);
+                    AttendList attendList = new AttendList(courseID, courseTitle, courseRoom, courseTime);
                     AttendList.add(attendList);
                     count++;
                 }

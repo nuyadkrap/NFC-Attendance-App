@@ -3,10 +3,18 @@ package com.example.san;
 
 public class AttendList {
   //  String userID;
-  // String courseID;
+    String courseID;
     String courseTitle;
     String courseRoom;
     String courseTime;
+
+    public String getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
 
     public String getCourseTitle() {
         return courseTitle;
@@ -32,7 +40,8 @@ public class AttendList {
         this.courseTime = courseTime;
     }
 
-    public AttendList(String courseTitle, String courseRoom, String courseTime) {
+    public AttendList(String courseID, String courseTitle, String courseRoom, String courseTime) {
+        this.courseID = courseID;
         this.courseTitle = courseTitle;
         this.courseRoom = courseRoom;
         this.courseTime = courseTime;

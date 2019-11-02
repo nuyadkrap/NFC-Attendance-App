@@ -97,14 +97,6 @@ public class CourseListActivity extends AppCompatActivity {
                             "&courseArea=" + URLEncoder.encode(areaSpinner.getSelectedItem().toString(), "UTF-8") +
                             "&courseTerm=" + URLEncoder.encode(termSpinner.getSelectedItem().toString(), "UTF-8") +
                             "&courseMajor=" + URLEncoder.encode(majorSpinner.getSelectedItem().toString(), "UTF-8");
-                    System.out.println("222");
-                    System.out.println(target);
-                    System.out.println(URLEncoder.encode(yearSpinner.getSelectedItem().toString().substring(0, 4), "UTF-8"));
-                    System.out.println(URLEncoder.encode(areaSpinner.getSelectedItem().toString(), "UTF-8"));
-                    System.out.println(URLDecoder.decode(areaSpinner.getSelectedItem().toString(), "UTF-8"));
-                    System.out.println(URLDecoder.decode(termSpinner.getSelectedItem().toString(), "UTF-8"));
-                    System.out.println(URLDecoder.decode(majorSpinner.getSelectedItem().toString(), "UTF-8"));
-
                 } catch (Exception e) {
             e.printStackTrace();
         }
