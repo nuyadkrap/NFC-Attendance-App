@@ -182,7 +182,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="480dp"
             android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
             android:text="공지 작성"
+            android:background="@drawable/custom_bttn"
             android:visibility="invisible"
             />
     </LinearLayout>
