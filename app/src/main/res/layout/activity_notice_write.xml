@@ -40,12 +40,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/noticeName"
         android:layout_gravity="center"
-        />
+        android:hint="제목"
+            />
+
         <EditText
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:id="@+id/noticeContent"
             android:layout_gravity="center"
+            android:hint="내용"
             />
         <Button
             android:id="@+id/notice_write"

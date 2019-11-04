@@ -1,5 +1,6 @@
 package com.example.san;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,7 +16,47 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_id, tv_name;
     public static String userID, userState;
 
+    long backKeyPressedTime;
+
     Button btn_attend, btn_attendance, btn_time, btn_course, notice;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == -1) {
+            Toast.makeText(this, "정보를 불러오는데 실패하였습니다", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        if (data == null) {
+          //  Toast.makeText(this, "전달된 값이 없습니다", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        switch (requestCode) {
+            case 100:
+                userState = data.getStringExtra("userState");
+                break;
+
+            case 101:
+                break;
+
+            case 102:
+                break;
+
+            case 103:
+                break;
+
+            case 104:
+                break;
+
+            default:
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,54 +77,54 @@ public class MainActivity extends AppCompatActivity {
         tv_id.setText(userID);
         tv_name.setText(userName);
 
-        notice = findViewById (R.id.notice);
+        notice = findViewById(R.id.notice);
 
-        if(userState.equals("교수")){
+        if (userState.equals("교수")) {
             notice.setVisibility(View.VISIBLE);
         }
 
-        btn_attend = findViewById (R.id.btn_attend);
-        btn_attend.setOnClickListener (new View.OnClickListener ( ) {
+        btn_attend = findViewById(R.id.btn_attend);
+        btn_attend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (MainActivity.this, AttendListActivity.class);
-                startActivity (intent);
+                Intent intent = new Intent(MainActivity.this, AttendListActivity.class);
+                startActivityForResult(intent, 104);
             }
         });
 
-        btn_time = findViewById (R.id.btn_time);
-        btn_time.setOnClickListener (new View.OnClickListener ( ) {
+        btn_time = findViewById(R.id.btn_time);
+        btn_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent (MainActivity.this, TimetableActivity.class);
-                startActivity (intent2);
+                Intent intent2 = new Intent(MainActivity.this, TimetableActivity.class);
+                startActivityForResult(intent2, 103);
             }
         });
 
-        btn_attendance = findViewById (R.id.btn_attendance);
-        btn_attendance.setOnClickListener (new View.OnClickListener ( ) {
+        btn_attendance = findViewById(R.id.btn_attendance);
+        btn_attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent (MainActivity.this, AttendanceActivity.class);
-                startActivity (intent3);
+                Intent intent3 = new Intent(MainActivity.this, AttendanceActivity.class);
+                startActivityForResult(intent3, 102);
             }
         });
 
-        btn_course = findViewById (R.id.btn_course);
-        btn_course.setOnClickListener (new View.OnClickListener ( ) {
+        btn_course = findViewById(R.id.btn_course);
+        btn_course.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent (MainActivity.this, CourseListActivity.class);
-                startActivity (intent4);
+                Intent intent4 = new Intent(MainActivity.this, CourseListActivity.class);
+                startActivityForResult(intent4, 101);
+                // startActivity (intent4);
             }
         });
 
-
-        notice.setOnClickListener (new View.OnClickListener ( ) {
+        notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent5 = new Intent (MainActivity.this, NoticeActivity.class);
-                startActivity (intent5);
+                Intent intent5 = new Intent(MainActivity.this, NoticeWriteActivity.class);
+                startActivityForResult(intent5, 100);
             }
         });
 
@@ -95,12 +136,31 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        /*
         if(System.currentTimeMillis() - lastTimeBackPressd < 1500)
         {
-            finish();
+            System.exit(0);
             return;
         }
-        Toast.makeText(this, "'뒤로' 버튼을 한 번 더 눌러 종료합니다.", Toast.LENGTH_SHORT);
-        lastTimeBackPressd = System.currentTimeMillis();
+        Toast.makeText(this, "'뒤로' 버튼을 한 번 더 눌러 종료합니다.", Toast.LENGTH_SHORT).show();
+      //  lastTimeBackPressd = System.currentTimeMillis();
+      */
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(this,"'뒤로' 버튼을 한 번 더 눌러 종료합니다.", Toast.LENGTH_SHORT).show();
+        }
+        //2번째 백버튼 클릭 (종료)
+        else {
+            AppFinish();
+        }
     }
+
+    public void AppFinish () {
+        finish();
+        System.exit(0);
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+
 }
