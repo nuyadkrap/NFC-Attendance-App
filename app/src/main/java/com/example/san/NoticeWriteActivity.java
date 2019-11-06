@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -25,6 +26,8 @@ public class NoticeWriteActivity extends AppCompatActivity {
     private EditText noticeName, noticeContent;
     private Button notice_write;
     private AlertDialog dialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,7 @@ public class NoticeWriteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = noticeName.getText().toString();
                 String content = noticeContent.getText().toString();
+
 
                 if(name.equals("") || content.equals("") ) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(NoticeWriteActivity.this);
@@ -81,13 +85,17 @@ public class NoticeWriteActivity extends AppCompatActivity {
                         }
                     }
                 };
-                NoticeWriteRequest noticeWriteRequest = new NoticeWriteRequest(name, content,responseListener);
+                SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.getDefault());
+                Date Date = new Date();
+                String date = dateFormat.format(Date);
+
+
+                NoticeWriteRequest noticeWriteRequest = new NoticeWriteRequest(name, content, date, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(NoticeWriteActivity.this);
                 queue.add(noticeWriteRequest);
 
             }
         });
-
     }
 }
 
