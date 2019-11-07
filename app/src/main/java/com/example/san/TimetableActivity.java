@@ -15,14 +15,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Arrays;
 
 public class TimetableActivity extends AppCompatActivity {
 
-    private AutoResizeTextView monday[] = new AutoResizeTextView[13];
-    private AutoResizeTextView tuesday[] = new AutoResizeTextView[13];
-    private AutoResizeTextView wednesday[] = new AutoResizeTextView[13];
-    private AutoResizeTextView thursday[] = new AutoResizeTextView[13];
-    private AutoResizeTextView friday[] = new AutoResizeTextView[13];
+    private AutoResizeTextView monday[] = new AutoResizeTextView[24];
+    private AutoResizeTextView tuesday[] = new AutoResizeTextView[24];
+    private AutoResizeTextView wednesday[] = new AutoResizeTextView[24];
+    private AutoResizeTextView thursday[] = new AutoResizeTextView[24];
+    private AutoResizeTextView friday[] = new AutoResizeTextView[24];
     private Schedule schedule = new Schedule();
 
     @Override
@@ -31,32 +32,47 @@ public class TimetableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_time);
 
         Integer[] mon_cell = {
+                R.id.monday0,
                 R.id.monday1, R.id.monday2, R.id.monday3, R.id.monday4, R.id.monday5,
                 R.id.monday6, R.id.monday7, R.id.monday8, R.id.monday9, R.id.monday10,
-                R.id.monday11, R.id.monday12, R.id.monday13
+                R.id.monday11, R.id.monday12, R.id.monday13, R.id.monday14, R.id.monday15,
+                R.id.monday16, R.id.monday17, R.id.monday18, R.id.monday19, R.id.monday20,
+                R.id.monday21, R.id.monday22, R.id.monday23
         };
         Integer[] tue_cell = {
+                R.id.tuesday0,
                 R.id.tuesday1, R.id.tuesday2, R.id.tuesday3, R.id.tuesday4, R.id.tuesday5,
                 R.id.tuesday6, R.id.tuesday7, R.id.tuesday8, R.id.tuesday9, R.id.tuesday10,
-                R.id.tuesday11, R.id.tuesday12, R.id.tuesday13
+                R.id.tuesday11, R.id.tuesday12, R.id.tuesday13, R.id.tuesday14, R.id.tuesday15,
+                R.id.tuesday16, R.id.tuesday17, R.id.tuesday18,R.id.tuesday19, R.id.tuesday20,
+                R.id.tuesday21, R.id.tuesday22, R.id.tuesday23
         };
         Integer[] wed_cell = {
+                R.id.wednesday0,
                 R.id.wednesday1, R.id.wednesday2, R.id.wednesday3, R.id.wednesday4, R.id.wednesday5,
                 R.id.wednesday6, R.id.wednesday7, R.id.wednesday8, R.id.wednesday9, R.id.wednesday10,
-                R.id.wednesday11, R.id.wednesday12, R.id.wednesday13
+                R.id.wednesday11, R.id.wednesday12, R.id.wednesday13, R.id.wednesday14, R.id.wednesday15,
+                R.id.wednesday16, R.id.wednesday17, R.id.wednesday18, R.id.wednesday19, R.id.wednesday20,
+                R.id.wednesday21, R.id.wednesday22, R.id.wednesday23
         };
         Integer[] thu_cell = {
+                R.id.thursday0,
                 R.id.thursday1, R.id.thursday2, R.id.thursday3, R.id.thursday4, R.id.thursday5,
                 R.id.thursday6, R.id.thursday7, R.id.thursday8, R.id.thursday9, R.id.thursday10,
-                R.id.thursday11, R.id.thursday12, R.id.thursday13
+                R.id.thursday11, R.id.thursday12, R.id.thursday13, R.id.thursday14,  R.id.thursday15,
+                R.id.thursday16,  R.id.thursday17,  R.id.thursday18,  R.id.thursday19,  R.id.thursday20,
+                R.id.thursday21,  R.id.thursday22,  R.id.thursday23
         };
         Integer[] fri_cell = {
+                R.id.friday0,
                 R.id.friday1, R.id.friday2, R.id.friday3, R.id.friday4, R.id.friday5,
                 R.id.friday6, R.id.friday7, R.id.friday8, R.id.friday9, R.id.friday10,
-                R.id.friday11, R.id.friday12, R.id.friday13
+                R.id.friday11, R.id.friday12, R.id.friday13, R.id.friday14, R.id.friday15,
+                R.id.friday16, R.id.friday17, R.id.friday18, R.id.friday19, R.id.friday20,
+                R.id.friday21, R.id.friday22, R.id.friday23
         };
 
-        for(int i=0; i<13; i++)
+        for(int i=0; i<24; i++)
         {
             monday[i] = (AutoResizeTextView) findViewById(mon_cell[i]);
             tuesday[i] = (AutoResizeTextView) findViewById(tue_cell[i]);
@@ -114,6 +130,8 @@ public class TimetableActivity extends AppCompatActivity {
                     String courseTime;
                     String courseTitle;
                     int courseID;
+                    System.out.println("------------------------------");
+                    System.out.println(jsonArray.length());
                     while(count < jsonArray.length())
                     {
                         JSONObject object = jsonArray.getJSONObject(count);
@@ -132,6 +150,5 @@ public class TimetableActivity extends AppCompatActivity {
         }
 
         new BackgroundTask().execute();
-
     }
 }

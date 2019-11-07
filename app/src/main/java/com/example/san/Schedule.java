@@ -5,14 +5,14 @@ import android.widget.TextView;
 
 public class Schedule {
 
-    private String monday[] = new String[13];
-    private String tuesday[] = new String[13];
-    private String wednesday[] = new String[13];
-    private String thursday[] = new String[13];
-    private String friday[] = new String[13];
+    private String monday[] = new String[24];
+    private String tuesday[] = new String[24];
+    private String wednesday[] = new String[24];
+    private String thursday[] = new String[24];
+    private String friday[] = new String[24];
 
     public Schedule() {
-        for(int i = 0; i < 13; i++)
+        for(int i = 0; i < 24; i++)
         {
             monday[i] = "";
             tuesday[i] = "";
@@ -221,7 +221,7 @@ public class Schedule {
                 if(scheduleText.charAt(i) == ']')
                 {
                     endPoint = i;
-                    monday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))] = courseTitle + professor;
+                    monday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))-1] = courseTitle + professor;
                 }
             }
         }
@@ -237,7 +237,7 @@ public class Schedule {
                 if(scheduleText.charAt(i) == ']')
                 {
                     endPoint = i;
-                    tuesday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))] = courseTitle + professor;
+                    tuesday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))-1] = courseTitle + professor;
                 }
             }
         }
@@ -253,7 +253,9 @@ public class Schedule {
                 if(scheduleText.charAt(i) == ']')
                 {
                     endPoint = i;
-                    wednesday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))] = courseTitle + professor;
+                    System.out.println("2222222222222222222222222222");
+                    System.out.println(Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))-1);
+                    wednesday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))-1] = courseTitle + professor;
                 }
             }
         }
@@ -269,7 +271,7 @@ public class Schedule {
                 if(scheduleText.charAt(i) == ']')
                 {
                     endPoint = i;
-                    thursday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))] = courseTitle + professor;
+                    thursday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))-1] = courseTitle + professor;
                 }
             }
         }
@@ -285,7 +287,7 @@ public class Schedule {
                 if(scheduleText.charAt(i) == ']')
                 {
                     endPoint = i;
-                    friday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))] = courseTitle + professor;
+                    friday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))-1] = courseTitle + professor;
                 }
             }
         }
@@ -294,7 +296,7 @@ public class Schedule {
     public void setting(AutoResizeTextView[] monday, AutoResizeTextView[] tuesday, AutoResizeTextView[] wednesday, AutoResizeTextView[] thursday, AutoResizeTextView[] friday, Context context) {
         int maxLength = 0;
         String maxString = "";
-        for(int i = 0; i < 13; i++)
+        for(int i = 0; i < 24; i++)
         {
             if(this.monday[i].length() >maxLength)
             {
@@ -322,7 +324,7 @@ public class Schedule {
                 maxString = this.friday[i];
             }
         }
-        for(int i = 0; i < 13; i++)
+        for(int i = 0; i < 24; i++)
         {
             if(!this.monday[i].equals(""))
             {
