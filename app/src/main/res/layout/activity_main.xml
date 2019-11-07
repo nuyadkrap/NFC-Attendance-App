@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_marginStart="9dp"
         android:layout_marginLeft="9dp"
         android:layout_marginEnd="9dp"
@@ -34,6 +34,7 @@
             android:text="학번 :"
             android:textColor="#333333"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -49,6 +50,7 @@
             android:text="TextView"
             android:textColor="#333333"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -65,6 +67,7 @@
             android:text="이름 :"
             android:textColor="#333333"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_id" />
@@ -81,6 +84,7 @@
             android:text="TextView"
             android:textColor="#333333"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -106,26 +110,29 @@
 
         <Button
             android:id="@+id/btn_attend"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:layout_marginTop="100dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/at"
             tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="445dp"
-            style="?android:attr/borderlessButtonStyle"
-            />
+            tools:layout_editor_absoluteY="445dp" />
 
         <Button
             android:id="@+id/btn_time"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:layout_marginTop="100dp"
-            android:background="@drawable/tt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/ts"
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="445dp"
-            style="?android:attr/borderlessButtonStyle"
 
             />
     </LinearLayout>
@@ -139,7 +146,6 @@
         android:layout_marginTop="9dp"
         android:layout_marginEnd="9dp"
         android:layout_marginRight="9dp"
-        android:layout_marginBottom="9dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -148,46 +154,54 @@
 
         <Button
             android:id="@+id/btn_attendance"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-            android:background="@drawable/ad"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/ob"
             tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="445dp"
-            style="?android:attr/borderlessButtonStyle"
-            />
+            tools:layout_editor_absoluteY="445dp" />
 
         <Button
             android:id="@+id/btn_course"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/cs"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/ats"
             tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="445dp"
-            style="?android:attr/borderlessButtonStyle"
-            />
+            tools:layout_editor_absoluteY="445dp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="601dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <Button
             android:id="@+id/notice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="480dp"
+            android:layout_marginTop="350dp"
             android:layout_weight="1"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"
-            android:text="공지 작성"
             android:background="@drawable/custom_bttn"
-            android:visibility="invisible"
-            />
+            android:text="공지 작성"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:visibility="invisible" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
