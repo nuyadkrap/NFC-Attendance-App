@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.san">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.NFC" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NoticeActivity"></activity>
+        <activity android:name=".NoticeWriteRequest"></activity>
+        <activity android:name=".NoticeWriteActivity" />
         <activity android:name=".AttendListActivity" />
         <activity android:name=".AttendActivity" />
         <activity android:name=".AttendanceActivity" />
@@ -26,8 +30,5 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.NFC" />
 
 </manifest>

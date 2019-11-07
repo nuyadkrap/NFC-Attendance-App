@@ -46,9 +46,11 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class AttendActivity extends AppCompatActivity {
 
@@ -67,7 +69,7 @@ public class AttendActivity extends AppCompatActivity {
     String title;
     String time;
     String room;
-    String attdState;
+    String attdState = "";
     int attd_exist;
     String table_Number;
     BackgroundTask task;
@@ -76,13 +78,24 @@ public class AttendActivity extends AppCompatActivity {
     };
     String[] timeArr;
 
-    // 현재시간을 msec 으로 구한다.
-    long now = System.currentTimeMillis();
-    // 현재시간을 date 변수에 저장한다.
-    Date date = new Date(now);
-    // 시간을 나타냇 포맷을 정한다 ( yyyy/MM/dd 같은 형태로 변형 가능 )
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    // nowDate 변수에 값을 저장한다.
+
+    // 현재시간을 msec 으로 구한다.
+    //long now = System.currentTimeMillis();
+    // 현재시간을 date 변수에 저장한다.
+
+    Date date = new Date();
+    Date reqTime1;  //수업시작 30분 전
+    Date reqTime2;  //수업시작 정각
+    Date reqTime3;  //수업종료 30분전
+    Date reqTime4;  //수업종료 정각
+    long nowTime;
+    long reqDateTime1;
+    long reqDateTime2;
+    long reqDateTime3;
+    long reqDateTime4;
+
     String formatDate = sdfNow.format(date);
 
     @Override
@@ -121,6 +134,48 @@ public class AttendActivity extends AppCompatActivity {
         title = intent.getStringExtra("title");
         room = intent.getStringExtra("room");
         time = intent.getStringExtra("time");
+
+        time = time.split(":")[1];
+        time = time.replace("[", "");
+        time = time.replace("]", "");
+
+        timeArr = time.split("");
+
+        List<String> list = new ArrayList<>(Arrays.asList(timeArr));
+        list.remove("");
+        timeArr = list.toArray(new String[list.size()]);
+
+        try {
+            reqTime1 = timeFormat.parse(timeTable[Integer.parseInt(timeArr[0])-1]);
+            reqTime2 = timeFormat.parse(timeTable[Integer.parseInt(timeArr[0])]);
+            reqTime3 = timeFormat.parse(timeTable[timeArr.length]);
+            reqTime4 = timeFormat.parse(timeTable[timeArr.length + 1]);
+            date = timeFormat.parse(timeFormat.format(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("2424242424");
+        System.out.println(reqTime1);
+        System.out.println(reqTime2);
+        System.out.println(reqTime3);
+        System.out.println(reqTime4);
+        System.out.println(date);
+
+        reqDateTime1 = reqTime1.getTime();
+        reqDateTime2 = reqTime2.getTime();
+        reqDateTime3 = reqTime3.getTime();
+        reqDateTime4 = reqTime4.getTime();
+        nowTime = date.getTime();
+
+        if(nowTime >= reqDateTime1 && nowTime <= reqDateTime2){
+            attdState = "출석";
+        }
+        else if(nowTime >= reqDateTime2){
+            attdState = "지각";
+        }
+
+        System.out.println(attdState);
 
         task = new BackgroundTask();
         task.execute();
@@ -252,18 +307,29 @@ public class AttendActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+                    System.out.println("sysy1111");
                     System.out.println(response);
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
+                    System.out.println("sysy2222");
+                    System.out.println(success);
                     if (success) {
+                        System.out.println("sysy3333");
                         Toast.makeText(getApplicationContext(), "출석 완료!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AttendActivity.this, AttendActivity.class);
-                        startActivity(intent);
+                        System.out.println("sysy4444");
+                     //   Intent intent = new Intent(AttendActivity.this, MainActivity.class);
+                    //    startActivity(intent);
+                        Intent intent = new Intent();
+                        setResult(1,intent);
+                        finish();
+
                     } else {
                         Toast.makeText(getApplicationContext(), "출석 실패!", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 } catch (JSONException e) {
+                    setResult(-1);
+                    finish();
                     e.printStackTrace();
                 }
             }
@@ -271,14 +337,20 @@ public class AttendActivity extends AppCompatActivity {
 
         //startTime, endTime 구분해서 값 입력(DB에 해당 userID, courseID 없으면 start, 있으면 end
         if(attd_exist == 0 ){
-            AttendRequest AttendRequest = new AttendRequest(userID, course_id, courseRoom2,  tableNum2, title, formatDate  , "" , "" , "" , responseListener);
+            AttendRequest AttendRequest = new AttendRequest(userID, course_id, courseRoom2,  tableNum2, title, formatDate  , "" , attdState , "" , responseListener);
             RequestQueue queue = Volley.newRequestQueue(AttendActivity.this);
             queue.add(AttendRequest);
         }
         else{
-            EndTimeRequest endtimeRequest = new EndTimeRequest(userID, course_id, formatDate, "", "", responseListener);
-            RequestQueue queue = Volley.newRequestQueue(AttendActivity.this);
-            queue.add(endtimeRequest);
+            if(nowTime <= reqDateTime3){
+                Toast.makeText(getApplicationContext(), "아직 퇴실할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else{
+                EndTimeRequest endtimeRequest = new EndTimeRequest(userID, course_id, formatDate, "", responseListener);
+                RequestQueue queue = Volley.newRequestQueue(AttendActivity.this);
+                queue.add(endtimeRequest);
+            }
         }
 
     }
