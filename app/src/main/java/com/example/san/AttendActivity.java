@@ -317,13 +317,19 @@ public class AttendActivity extends AppCompatActivity {
                         System.out.println("sysy3333");
                         Toast.makeText(getApplicationContext(), "출석 완료!", Toast.LENGTH_SHORT).show();
                         System.out.println("sysy4444");
-                        Intent intent = new Intent(AttendActivity.this, MainActivity.class);
-                        startActivity(intent);
+                     //   Intent intent = new Intent(AttendActivity.this, MainActivity.class);
+                    //    startActivity(intent);
+                        Intent intent = new Intent();
+                        setResult(1,intent);
+                        finish();
+
                     } else {
                         Toast.makeText(getApplicationContext(), "출석 실패!", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 } catch (JSONException e) {
+                    setResult(-1);
+                    finish();
                     e.printStackTrace();
                 }
             }

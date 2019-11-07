@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_id, tv_name;
     public static String userID, userState;
 
-    long backKeyPressedTime;
-
     Button btn_attend, btn_attendance, btn_time, btn_course, notice;
 
     @Override
@@ -38,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case 100:
+            case 104:
                 userState = data.getStringExtra("userState");
                 break;
 
@@ -48,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 103:
-                break;
-
-            case 104:
                 break;
 
             default:
@@ -134,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
     // 두번 뒤로가기 누르면 종료되도록 함
     private long lastTimeBackPressd;
 
+    long backKeyPressedTime;
+
     @Override
     public void onBackPressed() {
 
@@ -144,8 +142,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         Toast.makeText(this, "'뒤로' 버튼을 한 번 더 눌러 종료합니다.", Toast.LENGTH_SHORT).show();
-      //  lastTimeBackPressd = System.currentTimeMillis();
+        lastTimeBackPressd = System.currentTimeMillis();
       */
+
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
             Toast.makeText(this,"'뒤로' 버튼을 한 번 더 눌러 종료합니다.", Toast.LENGTH_SHORT).show();

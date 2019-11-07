@@ -15,7 +15,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".NoticeWriteRequest"></activity>
         <activity android:name=".NoticeWriteActivity" />
-        <activity android:name=".NoticeActivity" />
         <activity android:name=".AttendListActivity" />
         <activity android:name=".AttendActivity" />
         <activity android:name=".AttendanceActivity" />
