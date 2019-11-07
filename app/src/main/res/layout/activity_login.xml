@@ -82,7 +82,7 @@
             android:textStyle="bold"
             android:textColor="#ffffffff"
         android:text="로그인"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:background="@drawable/login2"
         app:layout_constraintEnd_toEndOf="@+id/et_pass"
         app:layout_constraintStart_toStartOf="@+id/et_pass"
