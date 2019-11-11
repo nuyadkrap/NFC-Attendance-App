@@ -32,9 +32,6 @@ public class AttendanceActivity extends AppCompatActivity {
     private ArrayAdapter attendAdapter;
     private Spinner attendSpinner;
 
-
-    private String courseTitle = "";
-    private String attdState = "";
     private String userID = MainActivity.userID;
 
     private ListView attendListView;

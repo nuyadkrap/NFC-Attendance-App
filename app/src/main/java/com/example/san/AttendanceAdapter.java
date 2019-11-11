@@ -2,22 +2,11 @@ package com.example.san;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.List;
 
 public class AttendanceAdapter extends BaseAdapter {
@@ -31,7 +20,7 @@ public class AttendanceAdapter extends BaseAdapter {
         this.context = context;
         this.Attendance = Attendance;
         this.parent = parent;
-        new BackgroundTask().execute();
+        // new BackgroundTask().execute();
     }
 
     //출력할 총갯수를 설정하는 메소드
@@ -73,68 +62,5 @@ public class AttendanceAdapter extends BaseAdapter {
 
         //만든뷰를 반환함
         return v;
-    }
-
-
-    class BackgroundTask extends AsyncTask<Void, Void, String>
-    {
-        String target;
-
-        @Override
-        protected  void onPreExecute() {
-            try {
-                target = "http://san19.dothome.co.kr/AttdState.php?attdState=" + URLEncoder.encode(userID, "UTF-8");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            try {
-                URL url = new URL(target);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));//getInputStream 으로 받은 데이터중, 문자(char)만 필터링하는 과정.
-                String temp;
-                StringBuilder stringBuilder = new StringBuilder();
-                while((temp = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(temp + "\n");
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return stringBuilder.toString().trim();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) { super.onProgressUpdate(); }
-
-        @Override
-        public void onPostExecute(String result) {
-            try {
-                JSONObject jsonObject = new JSONObject(result);
-                JSONArray jsonArray = jsonObject.getJSONArray("response");
-                int count = 0;
-                String courseTitle;
-                String attdState;
-              //  int userID;
-                while(count < jsonArray.length())
-                {
-                    JSONObject object = jsonArray.getJSONObject(count);
-                //    userID = object.getInt("userID");
-                    courseTitle = object.getString("courseTitle");
-                    attdState = object.getString("attdState");
-                    count++;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
