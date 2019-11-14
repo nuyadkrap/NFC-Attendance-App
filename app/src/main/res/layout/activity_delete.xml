@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="3dp"
-                android:text="소프트516"
+                android:text="강의실 이름"
                 android:textColor="#000000" />
         </LinearLayout>
 
@@ -76,4 +76,4 @@
         </LinearLayout>
 
 </LinearLayout>
-<!---->
+
