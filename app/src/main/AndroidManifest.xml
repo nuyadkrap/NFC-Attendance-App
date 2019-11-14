@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NoticeWriteRequest"></activity>
+        <service
+            android:name=".ServiceThread"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".NoticeWriteRequest" />
         <activity android:name=".NoticeWriteActivity" />
         <activity android:name=".AttendListActivity" />
         <activity android:name=".AttendActivity" />
@@ -27,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".BroadcastD"></receiver>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
     </application>
