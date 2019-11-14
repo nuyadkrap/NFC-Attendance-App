@@ -38,7 +38,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv_id, tv_name;
-    public static String userID, userState;
+    public static String userID, userState, userName;
     public static ArrayList<String> scheduleTime = new ArrayList<String>();
 
     Button btn_attend, btn_attendance, btn_time, btn_course, notice, logout;
@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
           //  Toast.makeText(this, "전달된 값이 없습니다", Toast.LENGTH_LONG).show();
             return;
         }
-
 
         switch (requestCode) {
             case 100:
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
-        String userName = intent.getStringExtra("userName");
+        userName = intent.getStringExtra("userName");
 
         tv_id.setText(userID);
         tv_name.setText(userName);
@@ -153,14 +152,8 @@ public class MainActivity extends AppCompatActivity {
         btn_attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (userState.equals("교수")) {
-                    Intent intent = new Intent(MainActivity.this, AttendListActivity.class);
-                    startActivityForResult(intent, 104);
-                }
-                else {
-                    Intent intent3 = new Intent(MainActivity.this, AttendanceActivity.class);
-                    startActivityForResult(intent3, 102);
-                }
+                Intent intent3 = new Intent(MainActivity.this, AttendanceActivity.class);
+                startActivityForResult(intent3, 102);
             }
         });
 
@@ -185,12 +178,12 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("3333333");
         System.out.println(userID);
         System.out.println(scheduleTime);
+        System.out.println(userName);
 
         //Intent intent1 = new Intent(MainActivity.this, MyService.class);
         //startService(intent1);
 
-   //     new AlarmHATT(getApplicationContext()).Alarm();
-
+        new AlarmHATT(getApplicationContext()).Alarm();
     }
 
     public class AlarmHATT {
@@ -234,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
             Calendar calendar = Calendar.getInstance();
             //알람시간 calendar에 set해주기
 
-            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 12, 18, 0);
+            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 18, 54, 0);
 
             //알람 예약
             am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);

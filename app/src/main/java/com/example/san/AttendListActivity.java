@@ -37,6 +37,7 @@ public class AttendListActivity extends AppCompatActivity {
     private String userID = MainActivity.userID;
     private String userState = MainActivity.userState;
     BackgroundTask task;
+    String courseTime;
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -98,6 +99,9 @@ public class AttendListActivity extends AppCompatActivity {
         task = new BackgroundTask();
         task.execute();
 
+        System.out.println(courseTime);
+
+
     }
 
     class BackgroundTask extends AsyncTask<Void, Void, String>
@@ -141,40 +145,42 @@ public class AttendListActivity extends AppCompatActivity {
 
         @Override
         public void onPostExecute(String result) {
-            try {
-                AttendList.clear();
-                JSONObject jsonObject = new JSONObject(result);
-                JSONArray jsonArray = jsonObject.getJSONArray("response");
-                int count = 0;
+            super.onPostExecute(result);
+            if(result != null){
+                try {
+                    AttendList.clear();
+                    JSONObject jsonObject = new JSONObject(result);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
 
-                String courseID;
-                String courseTitle;
-                String courseTime;
-                String courseRoom;
-                while (count < jsonArray.length())
-                {
-                    JSONObject object = jsonArray.getJSONObject(count);
+                    String courseID;
+                    String courseTitle;
+                    String courseRoom;
+                    while (count < jsonArray.length())
+                    {
+                        JSONObject object = jsonArray.getJSONObject(count);
 
-                    courseID = object.getString("courseID");
-                    courseTitle = object.getString("courseTitle");
-                    courseTime = object.getString("courseTime");
-                    courseRoom = object.getString("courseRoom");
-                    AttendList attendList = new AttendList(courseID, courseTitle, courseRoom, courseTime);
-                    AttendList.add(attendList);
-                    count++;
+                        courseID = object.getString("courseID");
+                        courseTitle = object.getString("courseTitle");
+                        courseTime = object.getString("courseTime");
+                        courseRoom = object.getString("courseRoom");
+                        AttendList attendList = new AttendList(courseID, courseTitle, courseRoom, courseTime);
+                        AttendList.add(attendList);
+                        count++;
+                    }
+                    if(count == 0)
+                    {
+                        AlertDialog dialog;
+                        AlertDialog.Builder builder = new AlertDialog.Builder(AttendListActivity.this);
+                        dialog = builder.setMessage("조회된 강의가 없습니다.\n강의를 추가하세요.")
+                                .setNegativeButton("확인", null)
+                                .create();
+                        dialog.show();
+                    }
+                    adapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                if(count == 0)
-                {
-                    AlertDialog dialog;
-                    AlertDialog.Builder builder = new AlertDialog.Builder(AttendListActivity.this);
-                    dialog = builder.setMessage("조회된 강의가 없습니다.\n강의를 추가하세요.")
-                            .setNegativeButton("확인", null)
-                            .create();
-                    dialog.show();
-                }
-                adapter.notifyDataSetChanged();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
 

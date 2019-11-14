@@ -33,6 +33,7 @@ public class CourseListAdapter extends BaseAdapter {
     private List<Course> courseList;
     private Activity parent;
     private String userID = MainActivity.userID;
+    private String userName = MainActivity.userName;
     private Schedule schedule = new Schedule();
     private List<Integer> courseIDLIst;
 
@@ -123,6 +124,8 @@ public class CourseListAdapter extends BaseAdapter {
                                         .setPositiveButton("확인", null)
                                         .create();
                                 dialog.show();
+                                System.out.println("888888888888");
+                                System.out.println(userName);
                                 courseIDLIst.add(courseList.get(i).getCourseID());
                                 schedule.addSchedule(courseList.get(i).getCourseTime());
                             } else {
@@ -139,7 +142,7 @@ public class CourseListAdapter extends BaseAdapter {
 
                     }
                 };
-                    AddRequest addRequest = new AddRequest(userID, courseList.get(i).getCourseID() + "", responseListener);
+                    AddRequest addRequest = new AddRequest(userID, courseList.get(i).getCourseID() + "", userName, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(parent);
                     queue.add(addRequest);
                 }
