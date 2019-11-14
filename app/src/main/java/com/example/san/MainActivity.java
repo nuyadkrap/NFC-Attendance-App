@@ -153,8 +153,14 @@ public class MainActivity extends AppCompatActivity {
         btn_attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent(MainActivity.this, AttendanceActivity.class);
-                startActivityForResult(intent3, 102);
+                if (userState.equals("교수")) {
+                    Intent intent = new Intent(MainActivity.this, AttendListActivity.class);
+                    startActivityForResult(intent, 104);
+                }
+                else {
+                    Intent intent3 = new Intent(MainActivity.this, AttendanceActivity.class);
+                    startActivityForResult(intent3, 102);
+                }
             }
         });
 
@@ -183,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         //Intent intent1 = new Intent(MainActivity.this, MyService.class);
         //startService(intent1);
 
-        new AlarmHATT(getApplicationContext()).Alarm();
+   //     new AlarmHATT(getApplicationContext()).Alarm();
 
     }
 

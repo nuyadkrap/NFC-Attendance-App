@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -33,16 +34,17 @@ public class AttendanceActivity extends AppCompatActivity {
     private Spinner attendSpinner;
 
     private String userID = MainActivity.userID;
+    private String userState = MainActivity.userState;
 
     private ListView attendListView;
     private AttendanceAdapter adapter;
     private List<Attendance> Attendance;
+    private String courseID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
-
 
         attendSpinner = (Spinner) findViewById(R.id.attendSpinner);
 
@@ -64,6 +66,14 @@ public class AttendanceActivity extends AppCompatActivity {
             }
         });
 
+
+
+        Intent intent = getIntent();
+        courseID = intent.getStringExtra("course_id");
+
+        System.out.println("**********2342342*********");
+        System.out.println(courseID);
+
     }
 
     class BackgroundTask extends AsyncTask<Void, Void, String> {
@@ -72,8 +82,15 @@ public class AttendanceActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             try {
-                target = "http://san19.dothome.co.kr/Attendance.php?attdState=" + URLEncoder.encode(attendSpinner.getSelectedItem().toString(), "UTF-8") +
-                "&userID=" + URLEncoder.encode(userID, "UTF-8");
+                if (userState.equals("교수"))
+                {
+                    target = "http://san19.dothome.co.kr/Checkattd.php?attdState=" + URLEncoder.encode(attendSpinner.getSelectedItem().toString(), "UTF-8") +
+                    "&courseID=" + courseID;
+                }
+               else {
+                    target = "http://san19.dothome.co.kr/Attendance.php?attdState=" + URLEncoder.encode(attendSpinner.getSelectedItem().toString(), "UTF-8") +
+                            "&userID=" + URLEncoder.encode(userID, "UTF-8");
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -113,19 +130,31 @@ public class AttendanceActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
-               // String userID;
+                String userName;
+                String userID2;
                 String courseTitle;
                 String attdState;
 
                 while (count < jsonArray.length())
                 {
                     JSONObject object = jsonArray.getJSONObject(count);
-                  //  userID = object.getString("userID");
+                    userID2 = object.getString("userID");
+                    userName = object.getString("userName");
                     courseTitle = object.getString("courseTitle");
                     attdState = object.getString("attdState");
-                    Attendance attd = new Attendance(courseTitle, attdState);
-                    Attendance.add(attd);
-                    count++;
+
+                    if (userState.equals("교수"))
+                    {
+                        Attendance attd = new Attendance(courseTitle, attdState, userID2, userName);
+                        Attendance.add(attd);
+                        count++;
+                    }
+
+                    else {
+                        Attendance attd = new Attendance(courseTitle, attdState);
+                        Attendance.add(attd);
+                        count++;
+                    }
                 }
                 if (count == 0) {
                     AlertDialog dialog;
