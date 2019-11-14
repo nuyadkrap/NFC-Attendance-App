@@ -10,24 +10,26 @@
         android:layout_height="50dp"
         android:text="시간표"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="0dp"
+
         />
     <Button
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="300dp"
+        android:layout_marginLeft="340dp"
         android:id="@+id/btn_delete"
         android:background="@drawable/ic_delete_forever_black_24dp"
         />
 
     <ScrollView
         android:id="@+id/viewContentOne"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center">
 
 
         <TableLayout
@@ -38,7 +40,8 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorPrimary"
+                >
 
                 <TextView
                     android:layout_width="24dp"

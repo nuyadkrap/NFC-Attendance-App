@@ -193,5 +193,23 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="239dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="366dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginRight="66dp"
+        android:layout_marginBottom="244dp"
+        android:layout_weight="1"
+        android:text="로그아웃"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
