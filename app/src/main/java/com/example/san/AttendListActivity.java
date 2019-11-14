@@ -1,5 +1,6 @@
 package com.example.san;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.Intent;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,7 +35,31 @@ public class AttendListActivity extends AppCompatActivity {
     private AttendListAdapter adapter;
     private List<AttendList> AttendList;
     private String userID = MainActivity.userID;
+    private String userState = MainActivity.userState;
     BackgroundTask task;
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == -1) {
+           // Toast.makeText(this, "정보를 불러오는데 실패하였습니다", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (data == null) {
+            return;
+        }
+
+
+        switch (requestCode) {
+            case 105:
+            case 106:
+                break;
+
+            default:
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +79,19 @@ public class AttendListActivity extends AppCompatActivity {
         attend_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), AttendActivity.class);
-                intent.putExtra("course_id", AttendList.get(position).courseID);
-                intent.putExtra("title", AttendList.get(position).courseTitle);
-                intent.putExtra("room", AttendList.get(position).courseRoom);
-                intent.putExtra("time", AttendList.get(position).courseTime);
-                startActivity(intent);
+                if (userState.equals("교수")){
+                    Intent intent1 = new Intent(AttendListActivity.this, AttendanceActivity.class);
+                    intent1.putExtra("course_id", AttendList.get(position).courseID);
+                    startActivityForResult(intent1, 105);
+                }
+                else {
+                    Intent intent = new Intent(getApplicationContext(), AttendActivity.class);
+                    intent.putExtra("course_id", AttendList.get(position).courseID);
+                    intent.putExtra("title", AttendList.get(position).courseTitle);
+                    intent.putExtra("room", AttendList.get(position).courseRoom);
+                    intent.putExtra("time", AttendList.get(position).courseTime);
+                    startActivityForResult(intent, 106);
+                }
             }
         });
 

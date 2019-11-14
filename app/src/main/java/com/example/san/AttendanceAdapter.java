@@ -15,6 +15,7 @@ public class AttendanceAdapter extends BaseAdapter {
     private Context context;
     private Activity parent;
     private String userID = MainActivity.userID;
+    private String userState = MainActivity.userState;
 
     public AttendanceAdapter(Context context, List<Attendance> Attendance, AttendanceActivity parent){
         this.context = context;
@@ -44,23 +45,48 @@ public class AttendanceAdapter extends BaseAdapter {
     //가장 중요한 부분
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View v = View.inflate(context, R.layout.attendance, null);
 
-        //뷰에 다음 컴포넌트들을 연결시켜줌
-        // TextView userID = (TextView)v.findViewById(R.id.userID);
-        TextView courseTitle = (TextView)v.findViewById(R.id.courseTitle);
-        TextView attdState = (TextView)v.findViewById(R.id.attdState);
+        if(userState.equals("교수")){
+            View v = View.inflate(context, R.layout.checkattd, null);
+
+            TextView userID = (TextView)v.findViewById(R.id.userID);
+            TextView courseTitle = (TextView) v.findViewById(R.id.courseTitle);
+            TextView attdState = (TextView) v.findViewById(R.id.attdState);
+            TextView userName = v.findViewById(R.id.userName);
 
 
-        //  userID.setText(userList.get(i).getUserID());
-        courseTitle.setText(Attendance.get(i).getCourseTitle());
-        attdState.setText(Attendance.get(i).getAttdState());
+            userID.setText(Attendance.get(i).getUserID());
+            courseTitle.setText(Attendance.get(i).getCourseTitle());
+            attdState.setText(Attendance.get(i).getAttdState());
+            userName.setText(Attendance.get(i).getUserName());
 
-        //이렇게하면 findViewWithTag를 쓸 수 있음 없어도 되는 문장임
-        v.setTag(Attendance.get(i).getCourseTitle());
-        v.setTag(Attendance.get(i).getAttdState());
+            v.setTag(Attendance.get(i).getUserID());
+            v.setTag(Attendance.get(i).getCourseTitle());
+            v.setTag(Attendance.get(i).getAttdState());
+            v.setTag(Attendance.get(i).getUserName());
 
-        //만든뷰를 반환함
-        return v;
+            //만든뷰를 반환함
+            return v;
+        }
+        else {
+            View v = View.inflate(context, R.layout.attendance, null);
+
+            //뷰에 다음 컴포넌트들을 연결시켜줌
+            // TextView userID = (TextView)v.findViewById(R.id.userID);
+            TextView courseTitle = (TextView) v.findViewById(R.id.courseTitle);
+            TextView attdState = (TextView) v.findViewById(R.id.attdState);
+
+
+            //  userID.setText(userList.get(i).getUserID());
+            courseTitle.setText(Attendance.get(i).getCourseTitle());
+            attdState.setText(Attendance.get(i).getAttdState());
+
+            //이렇게하면 findViewWithTag를 쓸 수 있음 없어도 되는 문장임
+            v.setTag(Attendance.get(i).getCourseTitle());
+            v.setTag(Attendance.get(i).getAttdState());
+
+            //만든뷰를 반환함
+            return v;
+        }
     }
 }
