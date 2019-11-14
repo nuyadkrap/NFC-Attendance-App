@@ -35,6 +35,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Spinner
+            android:id="@+id/notice_course"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="강의명"
+            android:padding="10dp">
+
+        </Spinner>
+
         <EditText
         android:layout_width="280dp"
         android:layout_height="wrap_content"

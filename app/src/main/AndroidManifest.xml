@@ -27,6 +27,7 @@
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".TimetableActivity" />
         <activity android:name=".CourseListActivity" />
+        <activity android:name=".DeleteListActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

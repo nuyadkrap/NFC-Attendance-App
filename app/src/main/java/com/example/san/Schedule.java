@@ -1,6 +1,8 @@
 package com.example.san;
 
 import android.content.Context;
+import android.util.TypedValue;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 public class Schedule {
@@ -253,8 +255,6 @@ public class Schedule {
                 if(scheduleText.charAt(i) == ']')
                 {
                     endPoint = i;
-                    System.out.println("2222222222222222222222222222");
-                    System.out.println(Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))-1);
                     wednesday[Integer.parseInt(scheduleText.substring(startPoint + 1, endPoint))-1] = courseTitle + professor;
                 }
             }
@@ -293,7 +293,7 @@ public class Schedule {
         }
     }
 
-    public void setting(AutoResizeTextView[] monday, AutoResizeTextView[] tuesday, AutoResizeTextView[] wednesday, AutoResizeTextView[] thursday, AutoResizeTextView[] friday, Context context) {
+    public void setting(TextView[] monday, TextView[] tuesday, TextView[] wednesday, TextView[] thursday, TextView[] friday, Context context) {
         int maxLength = 0;
         String maxString = "";
         for(int i = 0; i < 24; i++)
@@ -324,12 +324,13 @@ public class Schedule {
                 maxString = this.friday[i];
             }
         }
-        for(int i = 0; i < 24; i++)
+       for(int i = 0; i < 24; i++)
         {
             if(!this.monday[i].equals(""))
             {
                 monday[i].setText(this.monday[i]);
                 monday[i].setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+
             }
             else
             {
@@ -371,11 +372,23 @@ public class Schedule {
             {
                 friday[i].setText(maxString);
             }
-            monday[i].resizeText();
-            tuesday[i].resizeText();
-            wednesday[i].resizeText();
-            thursday[i].resizeText();
-            friday[i].resizeText();
+//            monday[i].resizeText();
+//            tuesday[i].resizeText();
+//            wednesday[i].resizeText();
+//            thursday[i].resizeText();
+//            friday[i].resizeText();
         }
+//        for (int i = 0; i < 24; i++) {
+////            if (!this.monday[i].equals("")) {
+////                if (monday[i].getText().toString().equals(monday[i + 1].getText().toString())) {/*
+////                    monday[i].setTextColor(context.getResources().getColor(R.color.colorskyblue));
+////                    monday[i+1].setTextColor(context.getResources().getColor(R.color.colorskyblue));;*/
+////                    monday[i].setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
+////                    monday[i+1].setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
+////                    monday[i].setText(null);
+////            }
+////            }
+////        }
+
     }
 }

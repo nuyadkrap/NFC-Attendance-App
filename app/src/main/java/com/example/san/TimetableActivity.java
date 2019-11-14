@@ -2,7 +2,10 @@ package com.example.san;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.os.AsyncTask;
 
@@ -19,12 +22,14 @@ import java.util.Arrays;
 
 public class TimetableActivity extends AppCompatActivity {
 
-    private AutoResizeTextView monday[] = new AutoResizeTextView[24];
-    private AutoResizeTextView tuesday[] = new AutoResizeTextView[24];
-    private AutoResizeTextView wednesday[] = new AutoResizeTextView[24];
-    private AutoResizeTextView thursday[] = new AutoResizeTextView[24];
-    private AutoResizeTextView friday[] = new AutoResizeTextView[24];
+    private TextView monday[] = new TextView[24];
+    private TextView tuesday[] = new TextView[24];
+    private TextView wednesday[] = new TextView[24];
+    private TextView thursday[] = new TextView[24];
+    private TextView friday[] = new TextView[24];
     private Schedule schedule = new Schedule();
+
+    Button btn_delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +79,13 @@ public class TimetableActivity extends AppCompatActivity {
 
         for(int i=0; i<24; i++)
         {
-            monday[i] = (AutoResizeTextView) findViewById(mon_cell[i]);
-            tuesday[i] = (AutoResizeTextView) findViewById(tue_cell[i]);
-            wednesday[i] = (AutoResizeTextView) findViewById(wed_cell[i]);
-            thursday[i] = (AutoResizeTextView) findViewById(thu_cell[i]);
-            friday[i] = (AutoResizeTextView) findViewById(fri_cell[i]);
+            monday[i] = (TextView) findViewById(mon_cell[i]);
+            tuesday[i] = (TextView) findViewById(tue_cell[i]);
+            wednesday[i] =(TextView) findViewById(wed_cell[i]);
+            thursday[i] = (TextView) findViewById(thu_cell[i]);
+            friday[i] = (TextView) findViewById(fri_cell[i]);
         }
+
 
         class BackgroundTask extends AsyncTask<Void, Void, String>
         {
@@ -150,5 +156,15 @@ public class TimetableActivity extends AppCompatActivity {
         }
 
         new BackgroundTask().execute();
+
+        btn_delete = findViewById(R.id.btn_delete);
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent6 = new Intent(TimetableActivity.this, DeleteListActivity.class);
+                startActivityForResult(intent6, 107);
+
+            }
+        });
     }
 }

@@ -120,6 +120,7 @@ public class Course {
         this.courseRoom = courseRoom;
     }
 
+
     public Course(int courseID, String courseUniversity, int courseYear, String courseTerm, String courseArea, String courseMajor, String courseGrade, String courseTitle, String courseCredit, int courseDivide, String courseProfessor, String courseTime, String courseRoom) {
         this.courseID = courseID;
         this.courseUniversity = courseUniversity;
