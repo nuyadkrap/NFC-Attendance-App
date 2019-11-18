@@ -7,48 +7,50 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:text="시간표"
         android:textSize="20dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="0dp"
 
         />
     <Button
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="340dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
         android:id="@+id/btn_delete"
         android:background="@drawable/ic_delete_forever_black_24dp"
         />
 
     <ScrollView
         android:id="@+id/viewContentOne"
-        android:layout_width="400dp"
+        android:layout_width="370dp"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        >
 
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            >
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorWhite"
                 >
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:drawableStart="@drawable/ic_access_alarm_black_24dp"
-                    android:drawableLeft="@drawable/ic_access_alarm_black_24dp"
+                    android:text="           "
                     android:layout_gravity="center"
                     />
 
@@ -58,7 +60,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="월"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="17dp"
                     android:textAlignment="center"
@@ -70,7 +72,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="화"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="17dp"
                     android:textAlignment="center"
@@ -82,7 +84,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="수"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="17dp"
                     android:textAlignment="center"
@@ -94,7 +96,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="목"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="17dp"
                     android:textAlignment="center"
@@ -106,10 +108,11 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="금"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="17dp"
                     android:textAlignment="center"
+                    android:background="@drawable/radius1"
                     />
 
 
@@ -119,15 +122,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="9"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -200,15 +203,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -281,15 +284,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="10"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -362,12 +365,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -443,15 +446,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="11"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -524,12 +527,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -605,15 +608,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="12"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -686,12 +689,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -767,15 +770,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="1"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -848,12 +851,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -929,15 +932,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="2"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -1010,12 +1013,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -1091,15 +1094,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="3"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -1172,12 +1175,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -1253,15 +1256,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="4"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -1332,12 +1335,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -1412,15 +1415,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="5"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -1492,12 +1495,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -1571,15 +1574,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="6"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -1650,12 +1653,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -1730,15 +1733,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="7"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -1810,12 +1813,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"
@@ -1890,15 +1893,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorWhite">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text="8"
-                    android:textColor="#ffffff"
+                    android:textColor="#039BE5"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:paddingRight="1dp"
@@ -1970,12 +1973,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorWhite"
                     android:gravity="right"
                     android:text=""
                     android:textColor="#ffffff"

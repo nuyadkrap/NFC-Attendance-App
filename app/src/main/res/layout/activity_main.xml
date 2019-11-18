@@ -119,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="130dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/at"
             tools:layout_editor_absoluteX="80dp"
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="130dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/pf"
                 android:visibility="invisible" />
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:layout_marginLeft="190dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="130dp"
             android:background="@drawable/ts"
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="445dp"
@@ -157,7 +157,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="9dp"
         android:layout_marginLeft="9dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="9dp"
         android:layout_marginRight="9dp"
         android:orientation="horizontal"
@@ -192,22 +192,38 @@
 
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="239dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="366dp"
-        android:layout_marginLeft="66dp"
-        android:layout_marginEnd="66dp"
-        android:layout_marginRight="66dp"
-        android:layout_marginBottom="244dp"
-        android:layout_weight="1"
-        android:text="로그아웃"
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="280dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="470dp"
+            android:layout_marginBottom="244dp"
+            android:text="로그아웃"
+            android:textStyle="bold"
+            android:textColor="#ffffffff"
+            android:textSize="20dp"
+            android:background="@drawable/login2"
+            />
+
+
+
+    </LinearLayout>
 
 
 

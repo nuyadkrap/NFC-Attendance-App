@@ -54,7 +54,7 @@ public class DeleteListActivity extends AppCompatActivity {
         delete_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), AttendActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DeleteListActivity.class);
                 intent.putExtra("course_id", DeleteList.get(position).courseID);
                 intent.putExtra("title", DeleteList.get(position).courseTitle);
                 intent.putExtra("room", DeleteList.get(position).courseRoom);
