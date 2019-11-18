@@ -88,7 +88,6 @@ public class DeleteListAdapter extends BaseAdapter {
                         @Override
                         public void onResponse(String response) {
                             try {
-                                System.out.println("=--0-0-9408967059605406-");
                                 System.out.println(response);
                                 JSONObject jsonObject = new JSONObject(response);
                                 boolean success = jsonObject.getBoolean("success");
@@ -129,4 +128,3 @@ public class DeleteListAdapter extends BaseAdapter {
     }
 
 }
-//

@@ -48,20 +48,7 @@ public class DeleteListActivity extends AppCompatActivity {
         DeleteList = new ArrayList<DeleteList>();
 
         //어댑터 초기화부분 userList와 어댑터를 연결해준다.
-        adapter = new DeleteListAdapter(getApplicationContext(), DeleteList, this);
-        delete_ListView.setAdapter(adapter);
 
-        delete_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), DeleteListActivity.class);
-                intent.putExtra("course_id", DeleteList.get(position).courseID);
-                intent.putExtra("title", DeleteList.get(position).courseTitle);
-                intent.putExtra("room", DeleteList.get(position).courseRoom);
-                intent.putExtra("time", DeleteList.get(position).courseTime);
-                startActivity(intent);
-            }
-        });
 
         task = new BackgroundTask();
         task.execute();
@@ -150,4 +137,3 @@ public class DeleteListActivity extends AppCompatActivity {
 
     }
 }
-//

@@ -138,13 +138,14 @@ public class AttendanceActivity extends AppCompatActivity {
                 while (count < jsonArray.length())
                 {
                     JSONObject object = jsonArray.getJSONObject(count);
-                    userID2 = object.getString("userID");
-                    userName = object.getString("userName");
+
                     courseTitle = object.getString("courseTitle");
                     attdState = object.getString("attdState");
 
                     if (userState.equals("교수"))
                     {
+                        userID2 = object.getString("userID");
+                        userName = object.getString("userName");
                         Attendance attd = new Attendance(courseTitle, attdState, userID2, userName);
                         Attendance.add(attd);
                         count++;
