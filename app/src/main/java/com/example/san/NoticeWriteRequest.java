@@ -16,14 +16,14 @@ public class NoticeWriteRequest extends StringRequest {
     final static private String URL = "http://san19.dothome.co.kr/notice.php";
     private Map<String, String> map;
 
-    public NoticeWriteRequest(String course, String name, String content, String date, Response.Listener<String> listener) {
+    public NoticeWriteRequest(String name, String content, String date, String userName, Response.Listener<String> listener) {
         super(Request.Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("courseID", course);
         map.put("noticeName", name);
         map.put("noticeContent", content);
         map.put("noticeDate", date);
+        map.put("userName", userName);
     }
 
     @Override

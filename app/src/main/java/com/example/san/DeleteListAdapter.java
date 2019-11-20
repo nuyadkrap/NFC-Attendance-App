@@ -99,24 +99,24 @@ public class DeleteListAdapter extends BaseAdapter {
                                             .create();
                                     dialog.show();
                                     notifyDataSetChanged();
-
                                 } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(parent);
                                     AlertDialog dialog = builder.setMessage("강의 삭제가 실패하였습니다 .")
                                             .setPositiveButton("다시 시도", null)
                                             .create();
                                     dialog.show();
+
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
-
                             }
-                            notifyDataSetChanged();
+
                         }
                     };
                     DeleteRequest deleteRequest = new DeleteRequest(userID, DeleteList.get(i).getCourseID() + "", responseListener);
                     RequestQueue queue = Volley.newRequestQueue(parent);
                     queue.add(deleteRequest);
+
                 }
 
 

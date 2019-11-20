@@ -33,7 +33,6 @@ public class DeleteListActivity extends AppCompatActivity {
     private DeleteListAdapter adapter;
     private List<DeleteList> DeleteList;
     private String userID = MainActivity.userID;
-
     BackgroundTask task;
 
     @Override
@@ -48,13 +47,14 @@ public class DeleteListActivity extends AppCompatActivity {
         DeleteList = new ArrayList<DeleteList>();
 
         //어댑터 초기화부분 userList와 어댑터를 연결해준다.
-
-
+        adapter = new DeleteListAdapter(getApplicationContext(), DeleteList, this);
+        delete_ListView.setAdapter(adapter);
         task = new BackgroundTask();
         task.execute();
 
 
     }
+
 
     class BackgroundTask extends AsyncTask<Void, Void, String>
     {
@@ -117,6 +117,7 @@ public class DeleteListActivity extends AppCompatActivity {
                     courseTime = object.getString("courseTime");
                     DeleteList deleteList = new DeleteList(courseID, courseTitle, courseRoom, courseTime);
                     DeleteList.add(deleteList);
+                    adapter.notifyDataSetChanged();
                     count++;
                 }
                 if(count == 0)
@@ -134,6 +135,13 @@ public class DeleteListActivity extends AppCompatActivity {
             }
         }
 
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        delete_ListView.deferNotifyDataSetChanged();
 
     }
 }
