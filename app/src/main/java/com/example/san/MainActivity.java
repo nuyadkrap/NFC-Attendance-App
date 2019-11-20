@@ -175,8 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 // startActivity (intent4);
             }
         });
-        // btn_noticelist = findViewById(R.id.btn_noticelist);
-        /*
+        btn_noticelist = findViewById(R.id.btn_noticelist);
         btn_noticelist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-         */
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

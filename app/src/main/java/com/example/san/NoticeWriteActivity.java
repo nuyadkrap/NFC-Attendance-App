@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -26,6 +28,9 @@ public class NoticeWriteActivity extends AppCompatActivity {
     private EditText noticeName, noticeContent;
     private Button notice_write;
     private AlertDialog dialog;
+    private Spinner spinner;
+    private ArrayAdapter adapter;
+
     public static ArrayList<String> course_Title = new ArrayList<String>();
 
     @Override
@@ -38,7 +43,15 @@ public class NoticeWriteActivity extends AppCompatActivity {
 
         course_Title = getIntent().getStringArrayListExtra("courseTitle");
 
+        spinner = findViewById(R.id.notice_course);
 
+        for(int i=1; i<course_Title.size();i+=2) {
+            System.out.println("****************************");
+            System.out.println(course_Title.get(i));
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, course_Title);
+            // adapter = ArrayAdapter.createFromResource(this, R.array.major, android.R.layout.simple_dropdown_item_1line);
+            spinner.setAdapter(adapter);
+        }
         notice_write = findViewById(R.id.notice_write);
 
         notice_write.setOnClickListener(new View.OnClickListener() {
@@ -47,9 +60,10 @@ public class NoticeWriteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = noticeName.getText().toString();
                 String content = noticeContent.getText().toString();
+                String course = course_Title.toString();
 
 
-                if(name.equals("") || content.equals("") ) {
+                if(name.equals("") || content.equals("") || course.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(NoticeWriteActivity.this);
                     dialog = builder.setMessage("빈칸없이 입력해 주세요")
                             .setNegativeButton("확인", null)
@@ -91,7 +105,7 @@ public class NoticeWriteActivity extends AppCompatActivity {
                 String date = dateFormat.format(Date);
 
 
-                NoticeWriteRequest noticeWriteRequest = new NoticeWriteRequest(name, content, date, responseListener);
+                NoticeWriteRequest noticeWriteRequest = new NoticeWriteRequest(course, name, content, date, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(NoticeWriteActivity.this);
                 queue.add(noticeWriteRequest);
 
