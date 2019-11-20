@@ -38,8 +38,10 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv_id, tv_name;
-    public static String userID, userState;
+    public static String userID, userState, userName;
     public static ArrayList<String> scheduleTime = new ArrayList<String>();
+    public static ArrayList<String> course_Title = new ArrayList<String>();
+
 
     Button btn_attend, btn_attendance, btn_time, btn_course,btn_noticelist, notice, logout;
 
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
-        String userName = intent.getStringExtra("userName");
+        userName = intent.getStringExtra("userName");
 
         tv_id.setText(userID);
         tv_name.setText(userName);
@@ -173,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
                 // startActivity (intent4);
             }
         });
-        btn_noticelist = findViewById(R.id.btn_noticelist);
+        // btn_noticelist = findViewById(R.id.btn_noticelist);
+        /*
         btn_noticelist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,10 +184,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 104);
             }
         });
+
+         */
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent5 = new Intent(MainActivity.this, NoticeWriteActivity.class);
+                intent5.putExtra("courseTitle", course_Title);
                 startActivityForResult(intent5, 100);
             }
         });
@@ -297,14 +303,21 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(jsonArray);
                 int count=0;
                 String courseSchedule;
+                String courseTitle;
+                String courseID2;
                 while (count<jsonArray.length()){
                     JSONObject object = jsonArray.getJSONObject(count);
                     courseSchedule = object.getString("scheduleTime");
                     scheduleTime.add(courseSchedule);
+                    courseTitle = object.getString("courseTitle");
+                    courseID2 = object.getString("courseID");
+                    course_Title.add(courseID2);
+                    course_Title.add(courseTitle);
                     count++;
                 }
-                System.out.println("2222222222");
+                System.out.println("2222222222************************");
                 System.out.println(scheduleTime);
+                System.out.println(course_Title);
             } catch (Exception e) {
                 e.printStackTrace();
             }

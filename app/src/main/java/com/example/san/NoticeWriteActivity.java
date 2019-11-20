@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -19,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class NoticeWriteActivity extends AppCompatActivity {
@@ -26,7 +26,7 @@ public class NoticeWriteActivity extends AppCompatActivity {
     private EditText noticeName, noticeContent;
     private Button notice_write;
     private AlertDialog dialog;
-
+    public static ArrayList<String> course_Title = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class NoticeWriteActivity extends AppCompatActivity {
         noticeName = findViewById(R.id.noticeName); //공지 제목
         noticeContent = findViewById(R.id.noticeContent); //공지 내용
 
+        course_Title = getIntent().getStringArrayListExtra("courseTitle");
 
 
         notice_write = findViewById(R.id.notice_write);
