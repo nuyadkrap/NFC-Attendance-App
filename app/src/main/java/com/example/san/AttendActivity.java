@@ -47,10 +47,12 @@ import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class AttendActivity extends AppCompatActivity {
 
@@ -76,10 +78,11 @@ public class AttendActivity extends AppCompatActivity {
     String[] timeTable = {
             "08:30:00", "09:00:00", "09:30:00", "10:00:00", "10:30:00", "11:00:00", "11:30:00", "12:00:00", "12:30:00", "13:00:00", "13:30:00", "14:00:00", "14:30:00", "15:00:00"
     };
-    String[] timeArr;
+    String[] timeArr1, timeArr2;
 
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    SimpleDateFormat weekday = new SimpleDateFormat("EE", Locale.getDefault());
 
     // 현재시간을 msec 으로 구한다.
     //long now = System.currentTimeMillis();
@@ -90,13 +93,22 @@ public class AttendActivity extends AppCompatActivity {
     Date reqTime2;  //수업시작 정각
     Date reqTime3;  //수업종료 30분전
     Date reqTime4;  //수업종료 정각
+    Date reqTime5, reqTime6,reqTime7,reqTime8;
     long nowTime;
     long reqDateTime1;
     long reqDateTime2;
     long reqDateTime3;
     long reqDateTime4;
+    long reqDateTime5, reqDateTime6, reqDateTime7, reqDateTime8;
+    String day1, day2;
+    String scheduleTime1, scheduleTime2;
+    int count=0;
 
     String formatDate = sdfNow.format(date);
+    Date currentTime = Calendar.getInstance().getTime();
+    String today = weekday.format(currentTime);
+    List<String> list1 = new ArrayList<>();
+    List<String> list2 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,27 +147,75 @@ public class AttendActivity extends AppCompatActivity {
         room = intent.getStringExtra("room");
         time = intent.getStringExtra("time");
 
-        time = time.split(":")[1];
-        time = time.replace("[", "");
-        time = time.replace("]", "");
+        for(int i=0;i<time.length(); i++){
+            if(time.charAt(i) == ':')
+                count++;
+        }
+        System.out.println("확인");
+        System.out.println(time);
+        System.out.println(count);
+        day1 = time.split(":")[0];
+        scheduleTime1 = time.split(":")[1];
+        for(int i=0;i<scheduleTime1.length();i++) {
+            int start, end=0;
+            if(scheduleTime1.charAt(i) == '[') {
+                start = i+1;
+                for(int j=i+1;j<scheduleTime1.length();j++) {
+                    if(scheduleTime1.charAt(j) == ']') {
+                        end = j;
+                    }
+                    else if(scheduleTime1.charAt(j) == '[')
+                        break;
+                }
+                list1.add(scheduleTime1.substring(start, end));
+            }
+        }
 
-        timeArr = time.split("");
+        list1.remove("");
 
-        List<String> list = new ArrayList<>(Arrays.asList(timeArr));
-        list.remove("");
-        timeArr = list.toArray(new String[list.size()]);
+        if(count != 1){
+            list1.remove(list1.size()-1);
+            day2 = time.split(":")[1].substring(time.split(":")[1].length());
+            scheduleTime2 = time.split(":")[2];
+            for(int i=0;i<scheduleTime2.length();i++) {
+                int start, end=0;
+                if(scheduleTime2.charAt(i) == '[') {
+                    start = i+1;
+                    for(int j=i+1;j<scheduleTime2.length();j++) {
+                        if(scheduleTime2.charAt(j) == ']') {
+                            end = j;
+                        }
+                        else if(scheduleTime2.charAt(j) == '[')
+                            break;
+                    }
+                    list2.add(scheduleTime2.substring(start, end));
+                }
+            }
+        }
+        list2.remove("");
+        timeArr1 = list1.toArray(new String[list1.size()]);
+        timeArr2 = list2.toArray(new String[list2.size()]);
+        System.out.println("hhhhhhhhhhh");
+        System.out.println(Arrays.toString(timeArr1));
+        System.out.println(Arrays.toString(timeArr2));
 
         try {
-            reqTime1 = timeFormat.parse(timeTable[Integer.parseInt(timeArr[0])-1]);
-            reqTime2 = timeFormat.parse(timeTable[Integer.parseInt(timeArr[0])]);
-            reqTime3 = timeFormat.parse(timeTable[timeArr.length]);
-            reqTime4 = timeFormat.parse(timeTable[timeArr.length + 1]);
+            reqTime1 = timeFormat.parse(timeTable[Integer.parseInt(timeArr1[0])-1]);   //수업시작 30분전
+            reqTime2 = timeFormat.parse(timeTable[Integer.parseInt(timeArr1[0])]);     //수업 시작 정각
+            reqTime3 = timeFormat.parse(timeTable[timeArr1.length]);                  //수업 종료 30분전
+            reqTime4 = timeFormat.parse(timeTable[timeArr1.length + 1]);              //수업 종료 정각
+            if(count != 1) {
+                reqTime5 = timeFormat.parse(timeTable[Integer.parseInt(timeArr2[0]) - 1]);   //수업시작 30분전
+                reqTime6 = timeFormat.parse(timeTable[Integer.parseInt(timeArr2[0])]);     //수업 시작 정각
+                reqTime7 = timeFormat.parse(timeTable[timeArr2.length]);                  //수업 종료 30분전
+                reqTime8 = timeFormat.parse(timeTable[timeArr2.length + 1]);              //수업 종료 정각
+            }
             date = timeFormat.parse(timeFormat.format(date));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        System.out.println("2424242424");
+        System.out.println("ggg2424242424");
         System.out.println(reqTime1);
         System.out.println(reqTime2);
         System.out.println(reqTime3);
@@ -166,13 +226,25 @@ public class AttendActivity extends AppCompatActivity {
         reqDateTime2 = reqTime2.getTime();
         reqDateTime3 = reqTime3.getTime();
         reqDateTime4 = reqTime4.getTime();
+        if(count != 1){
+            reqDateTime5 = reqTime5.getTime();
+            reqDateTime6 = reqTime6.getTime();
+            reqDateTime7 = reqTime7.getTime();
+            reqDateTime8 = reqTime8.getTime();
+        }
         nowTime = date.getTime();
 
-        if(nowTime >= reqDateTime1 && nowTime <= reqDateTime2){
+
+        if((nowTime >= reqDateTime1 && nowTime <= reqDateTime2) || (nowTime >= reqDateTime5 && nowTime <= reqDateTime6)){
+            //수업 시작 30분 전~정각 전까지 태그할 경우
             attdState = "출석";
         }
-        else if(nowTime >= reqDateTime2){
+        else if((nowTime >= reqDateTime2 && nowTime <= reqDateTime3) || (nowTime >= reqDateTime6 && nowTime <= reqDateTime7)){
+            //수업 시작 정각 ~ 수업 종료 30분 전까지 태그할 경우
             attdState = "지각";
+        }
+        else{
+            attdState = "";
         }
 
         System.out.println(attdState);
@@ -335,25 +407,76 @@ public class AttendActivity extends AppCompatActivity {
             }
         };
 
-        //startTime, endTime 구분해서 값 입력(DB에 해당 userID, courseID 없으면 start, 있으면 end
-        if(attd_exist == 0 ){
-            AttendRequest AttendRequest = new AttendRequest(userID, course_id, courseRoom2,  tableNum2, title, formatDate  , "" , attdState , "" , responseListener);
-            RequestQueue queue = Volley.newRequestQueue(AttendActivity.this);
-            queue.add(AttendRequest);
+        if(today.equals(day1)){
+            if(attd_exist == 0){
+                if(nowTime <= reqDateTime1 || nowTime >= reqDateTime4){
+                    Toast.makeText(getApplicationContext(), "수업 시간이 아닙니다", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else{
+                    System.out.println("777777777777");
+                    System.out.println(attd_exist);
+                    AttendRequest AttendRequest = new AttendRequest(userID, course_id, courseRoom2, tableNum2, title, formatDate, "", attdState, "", responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(AttendActivity.this);
+                    queue.add(AttendRequest);
+                }
+            }
+            else if(attd_exist == 1) {
+                if(nowTime <= reqDateTime3){
+                    Toast.makeText(getApplicationContext(), "아직 퇴실할 수 없습니다", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(nowTime >= reqDateTime4){
+                    Toast.makeText(getApplicationContext(), "수업이 종료하여 태그할 수 없습니다", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else{
+                    System.out.println("88888888888888");
+                    System.out.println(attd_exist);
+                    EndTimeRequest endtimeRequest = new EndTimeRequest(userID, course_id, formatDate, "", responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(AttendActivity.this);
+                    queue.add(endtimeRequest);
+                }
+            }
         }
         else{
-            if(nowTime <= reqDateTime3){
-                Toast.makeText(getApplicationContext(), "아직 퇴실할 수 없습니다.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            else{
-                EndTimeRequest endtimeRequest = new EndTimeRequest(userID, course_id, formatDate, "", responseListener);
-                RequestQueue queue = Volley.newRequestQueue(AttendActivity.this);
-                queue.add(endtimeRequest);
-            }
+            Toast.makeText(getApplicationContext(), "수업이 없는 요일입니다", Toast.LENGTH_SHORT).show();
+            return;
         }
 
+        if(count != 1){
+            if(today.equals(day2)){
+                if(attd_exist == 0){
+                    if(nowTime <= reqDateTime5 || nowTime >= reqDateTime8){
+                        Toast.makeText(getApplicationContext(), "수업 시간이 아닙니다", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    else{
+                        AttendRequest AttendRequest = new AttendRequest(userID, course_id, courseRoom2, tableNum2, title, formatDate, "", attdState, "", responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(AttendActivity.this);
+                        queue.add(AttendRequest);
+                    }
+                }
+                else if(attd_exist == 1){
+                    if(nowTime <= reqDateTime7){
+                        Toast.makeText(getApplicationContext(), "아직 퇴실할 수 없습니다", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    else if(nowTime >= reqDateTime8){
+                        Toast.makeText(getApplicationContext(), "수업이 종료하여 태그할 수 없습니다", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    else{
+                        EndTimeRequest endtimeRequest = new EndTimeRequest(userID, course_id, formatDate, "", responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(AttendActivity.this);
+                        queue.add(endtimeRequest);
+                    }
+                }
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "수업이 있는 요일이 아닙니다", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
     }
-
-
 }
