@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="#f3f3f3"
     android:padding="10dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -192,6 +193,7 @@
 
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="wrap_content"
@@ -201,19 +203,30 @@
         android:layout_marginTop="9dp"
         android:layout_marginEnd="9dp"
         android:layout_marginRight="9dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/logout"
+            android:id="@+id/btn_noticelist"
             android:layout_width="280dp"
-            android:layout_height="37dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginTop="470dp"
-            android:layout_marginBottom="244dp"
+            android:text="공지사항"
+            android:textStyle="bold"
+            android:textColor="#ffffffff"
+            android:textSize="20dp"
+            android:background="@drawable/login2"
+            />
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="280dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:text="로그아웃"
             android:textStyle="bold"
             android:textColor="#ffffffff"
@@ -221,12 +234,7 @@
             android:background="@drawable/login2"
             />
 
-
-
     </LinearLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 <!---->

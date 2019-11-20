@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public static String userID, userState;
     public static ArrayList<String> scheduleTime = new ArrayList<String>();
 
-    Button btn_attend, btn_attendance, btn_time, btn_course, notice, logout;
+    Button btn_attend, btn_attendance, btn_time, btn_course,btn_noticelist, notice, logout;
 
     private static int ONE_MINUTE = 5626;
 
@@ -173,7 +173,14 @@ public class MainActivity extends AppCompatActivity {
                 // startActivity (intent4);
             }
         });
-
+        btn_noticelist = findViewById(R.id.btn_noticelist);
+        btn_noticelist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
+                startActivityForResult(intent, 104);
+            }
+        });
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
