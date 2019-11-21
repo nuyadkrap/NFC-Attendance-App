@@ -186,14 +186,6 @@ public class MainActivity extends AppCompatActivity {
                 // startActivity (intent4);
             }
         });
-        /*btn_noticelist = findViewById(R.id.btn_noticelist);
-        btn_noticelist.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
-                startActivityForResult(intent, 104);
-            }
-        });*/
 
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -367,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
                 String courseSchedule;
                 String courseTitle;
                 String courseID2;
+                String courseDivide;
                 String noticeName,noticeContent,noticeDate,pfName;
                 while (count<jsonArray.length()){
                     JSONObject object = jsonArray.getJSONObject(count);
@@ -374,8 +367,10 @@ public class MainActivity extends AppCompatActivity {
                     scheduleTime.add(courseSchedule);
                     courseTitle = object.getString("courseTitle");
                     courseID2 = object.getString("courseID");
+                    courseDivide = object.getString("courseDivide");
                     course_Title.add(courseID2);
                     course_Title.add(courseTitle);
+                    course_Title.add(courseDivide);
 
                     noticeName = object.getString("noticeName");
                     noticeContent = object.getString("noticeContent");
