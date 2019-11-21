@@ -31,5 +31,6 @@
         <item>출석</item>
         <item>지각</item>
         <item>결석</item>
+        <item>미출결</item>
     </string-array>
 </resources>

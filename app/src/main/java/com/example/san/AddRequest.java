@@ -12,12 +12,13 @@ public class AddRequest extends StringRequest {
     final static private String URL = "http://san19.dothome.co.kr/CourseAdd.php";
     private Map<String, String> map;
 
-    public AddRequest(String userID, String courseID, Response.Listener<String> listener) {
+    public AddRequest(String userID, String courseID, String userName, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
         map.put("userID", userID);
         map.put("courseID", courseID);
+        map.put("userName", userName);
     }
 
     @Override

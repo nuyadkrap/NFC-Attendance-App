@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -193,10 +194,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        System.out.println("3333333");
-        System.out.println(userID);
-        System.out.println(scheduleTime);
-
         //Intent intent1 = new Intent(MainActivity.this, MyService.class);
         //startService(intent1);
 
@@ -213,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("77777777777");
             System.out.println(scheduleTime);
             String s;
+            String time;
 
             for(int i=0;i<scheduleTime.size();i++) {
                 s = scheduleTime.get(i);
@@ -240,15 +238,70 @@ public class MainActivity extends AppCompatActivity {
             AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(MainActivity.this, BroadcastD.class);
 
-            PendingIntent sender = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
+            final int _id = (int) System.currentTimeMillis();
+
+            PendingIntent sender = PendingIntent.getBroadcast(MainActivity.this, _id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             Calendar calendar = Calendar.getInstance();
             //알람시간 calendar에 set해주기
 
-            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 12, 18, 0);
+            for(int i=0; i<final_schedule.size(); i+=2){
+                time = fiveMinute[Integer.parseInt((final_schedule.get(i+1)))-1];
+                switch (final_schedule.get(i)){
+                    case "월":
+                        calendar.set(Calendar.DAY_OF_WEEK, 2);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                    case "화":
+                        calendar.set(Calendar.DAY_OF_WEEK, 3);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                    case "수":
+                        calendar.set(Calendar.DAY_OF_WEEK, 4);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                    case "목":
+                        calendar.set(Calendar.DAY_OF_WEEK, 5);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                    case "금":
+                        calendar.set(Calendar.DAY_OF_WEEK, 6);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                }
+            }
+
+            //calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 12, 18, 0);
 
             //알람 예약
-            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+            //am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+            Calendar now = Calendar.getInstance();
+            now.set(Calendar.SECOND, 0);
+            now.set(Calendar.MILLISECOND, 0);
+            if(calendar.before(now)){
+                calendar.add(Calendar.DATE, 7);
+            }
+
+            //알람 매주 스케줄따라 반복
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 7*24*60^60*1000, sender);
+            //알람 한번만
+            //am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+
         }
     }
 
