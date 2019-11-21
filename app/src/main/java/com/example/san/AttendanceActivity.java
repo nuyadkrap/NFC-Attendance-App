@@ -162,7 +162,7 @@ public class AttendanceActivity extends AppCompatActivity {
                else {
                     target = "http://san19.dothome.co.kr/Attendance.php?attdState=" + URLEncoder.encode(attendSpinner.getSelectedItem().toString(), "UTF-8") +
                             "&userID=" + URLEncoder.encode(userID, "UTF-8");
-                }
+               }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -201,39 +201,48 @@ public class AttendanceActivity extends AppCompatActivity {
                 Attendance.clear();
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
+                System.out.println("7777777777");
+                System.out.println(jsonArray);
                 int count = 0;
                 String userName;
                 String userID2;
-                //String courseTitle;
+                String courseTitle2;
                 String attdState;
+                String courseTime="";
 
                 while (count < jsonArray.length())
                 {
                     JSONObject object = jsonArray.getJSONObject(count);
 
-                    //courseTitle = object.getString("courseTitle");
-                    if(Objects.equals(attendSpinner.getSelectedItem().toString(), "미출결")){
+                    courseTitle2 = object.getString("courseTitle");
+                    if(attendSpinner.getSelectedItem().toString().equals("미출결")){
                         attdState = "";
+                        courseTime = "";
                     }
                     else{
                         attdState = object.getString("attdState");
+                        courseTime = object.getString("courseTime");
                     }
 
                     if (userState.equals("교수"))
                     {
                         userID2 = object.getString("userID");
                         userName = object.getString("userName");
-                        Attendance attd = new Attendance(course_title, attdState, userID2, userName);
+                        Attendance attd = new Attendance(userID2, course_title, courseTime, attdState, userName);
                         Attendance.add(attd);
                         count++;
                     }
 
                     else {
-                        Attendance attd = new Attendance(course_title, attdState);
+                        Attendance attd = new Attendance(courseTitle2, courseTime, attdState);
                         Attendance.add(attd);
                         count++;
                     }
                 }
+
+                System.out.println("24242424");
+                System.out.println(Attendance);
+                System.out.println(courseTime);
                 if (count == 0) {
                     AlertDialog dialog;
                     AlertDialog.Builder builder = new AlertDialog.Builder(AttendanceActivity.this);

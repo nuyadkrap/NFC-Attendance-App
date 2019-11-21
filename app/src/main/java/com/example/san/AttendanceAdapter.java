@@ -53,17 +53,20 @@ public class AttendanceAdapter extends BaseAdapter {
 
             TextView userID = (TextView)v.findViewById(R.id.userID);
             TextView courseTitle = (TextView) v.findViewById(R.id.courseTitle);
+            TextView courseTime = (TextView) v.findViewById(R.id.courseTime);
             TextView attdState = (TextView) v.findViewById(R.id.attdState);
-            TextView userName = v.findViewById(R.id.userName);
+            TextView userName = (TextView) v.findViewById(R.id.userName);
 
 
             userID.setText(Attendance.get(i).getUserID());
             courseTitle.setText(Attendance.get(i).getCourseTitle());
+            courseTime.setText(Attendance.get(i).getCourseTime());
             attdState.setText(Attendance.get(i).getAttdState());
             userName.setText(Attendance.get(i).getUserName());
 
             v.setTag(Attendance.get(i).getUserID());
             v.setTag(Attendance.get(i).getCourseTitle());
+            v.setTag(Attendance.get(i).getCourseTime());
             v.setTag(Attendance.get(i).getAttdState());
             v.setTag(Attendance.get(i).getUserName());
 
@@ -76,15 +79,18 @@ public class AttendanceAdapter extends BaseAdapter {
             //뷰에 다음 컴포넌트들을 연결시켜줌
             // TextView userID = (TextView)v.findViewById(R.id.userID);
             TextView courseTitle = (TextView) v.findViewById(R.id.courseTitle);
+            TextView courseTime = (TextView) v.findViewById(R.id.courseTime);
             TextView attdState = (TextView) v.findViewById(R.id.attdState);
 
 
             //  userID.setText(userList.get(i).getUserID());
             courseTitle.setText(Attendance.get(i).getCourseTitle());
+            courseTime.setText(Attendance.get(i).getCourseTime());
             attdState.setText(Attendance.get(i).getAttdState());
 
             //이렇게하면 findViewWithTag를 쓸 수 있음 없어도 되는 문장임
             v.setTag(Attendance.get(i).getCourseTitle());
+            v.setTag(Attendance.get(i).getCourseTime());
             v.setTag(Attendance.get(i).getAttdState());
 
             //만든뷰를 반환함

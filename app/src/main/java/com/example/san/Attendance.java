@@ -3,6 +3,7 @@ package com.example.san;
 public class Attendance {
     String userID;
     String courseTitle;
+    String courseTime;
     String attdState;
     String userName;
 
@@ -36,13 +37,23 @@ public class Attendance {
         this.attdState = attdState;
     }
 
-    public Attendance(String courseTitle, String attdState) {
+    public String getCourseTime() {
+        return courseTime;
+    }
+
+    public void setCourseTime(String courseTime) {
+        this.courseTime = courseTime;
+    }
+
+    public Attendance(String courseTitle, String courseTime, String attdState) {
         this.courseTitle = courseTitle;
+        this.courseTime = courseTime;
         this.attdState = attdState;
     }
 
-    public Attendance(String courseTitle, String attdState, String userID, String userName) {
+    public Attendance(String courseTitle, String courseTime, String attdState, String userID, String userName) {
         this.courseTitle = courseTitle;
+        this.courseTime = courseTime;
         this.attdState = attdState;
         this.userID = userID;
         this.userName = userName;
