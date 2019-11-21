@@ -83,6 +83,8 @@ public class AttendListActivity extends AppCompatActivity {
                 if (userState.equals("교수")){
                     Intent intent1 = new Intent(AttendListActivity.this, AttendanceActivity.class);
                     intent1.putExtra("course_id", AttendList.get(position).courseID);
+                    intent1.putExtra("course_title", AttendList.get(position).courseTitle);
+                    intent1.putExtra("course_room", AttendList.get(position).courseRoom);
                     startActivityForResult(intent1, 105);
                 }
                 else {

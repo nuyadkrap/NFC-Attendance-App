@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -40,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_id, tv_name;
     public static String userID, userState, userName;
     public static ArrayList<String> scheduleTime = new ArrayList<String>();
+    public static ArrayList<String> course_Title = new ArrayList<String>();
 
-    Button btn_attend, btn_attendance, btn_time, btn_course, notice, logout;
+
+    Button btn_attend, btn_attendance, btn_time, btn_course,btn_noticelist, notice, logout;
 
     private static int ONE_MINUTE = 5626;
 
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
           //  Toast.makeText(this, "전달된 값이 없습니다", Toast.LENGTH_LONG).show();
             return;
         }
+
 
         switch (requestCode) {
             case 100:
@@ -152,8 +156,14 @@ public class MainActivity extends AppCompatActivity {
         btn_attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent(MainActivity.this, AttendanceActivity.class);
-                startActivityForResult(intent3, 102);
+                if (userState.equals("교수")) {
+                    Intent intent = new Intent(MainActivity.this, AttendListActivity.class);
+                    startActivityForResult(intent, 104);
+                }
+                else {
+                    Intent intent3 = new Intent(MainActivity.this, AttendanceActivity.class);
+                    startActivityForResult(intent3, 102);
+                }
             }
         });
 
@@ -166,24 +176,30 @@ public class MainActivity extends AppCompatActivity {
                 // startActivity (intent4);
             }
         });
+        btn_noticelist = findViewById(R.id.btn_noticelist);
+        btn_noticelist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
+                startActivityForResult(intent, 104);
+            }
+        });
 
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent5 = new Intent(MainActivity.this, NoticeWriteActivity.class);
+                intent5.putExtra("userName", userName);
+                intent5.putExtra("courseTitle", course_Title);
                 startActivityForResult(intent5, 100);
             }
         });
 
-        System.out.println("3333333");
-        System.out.println(userID);
-        System.out.println(scheduleTime);
-        System.out.println(userName);
-
         //Intent intent1 = new Intent(MainActivity.this, MyService.class);
         //startService(intent1);
 
-        new AlarmHATT(getApplicationContext()).Alarm();
+   //     new AlarmHATT(getApplicationContext()).Alarm();
+
     }
 
     public class AlarmHATT {
@@ -195,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("77777777777");
             System.out.println(scheduleTime);
             String s;
+            String time;
 
             for(int i=0;i<scheduleTime.size();i++) {
                 s = scheduleTime.get(i);
@@ -222,15 +239,70 @@ public class MainActivity extends AppCompatActivity {
             AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(MainActivity.this, BroadcastD.class);
 
-            PendingIntent sender = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
+            final int _id = (int) System.currentTimeMillis();
+
+            PendingIntent sender = PendingIntent.getBroadcast(MainActivity.this, _id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             Calendar calendar = Calendar.getInstance();
             //알람시간 calendar에 set해주기
 
-            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 18, 54, 0);
+            for(int i=0; i<final_schedule.size(); i+=2){
+                time = fiveMinute[Integer.parseInt((final_schedule.get(i+1)))-1];
+                switch (final_schedule.get(i)){
+                    case "월":
+                        calendar.set(Calendar.DAY_OF_WEEK, 2);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                    case "화":
+                        calendar.set(Calendar.DAY_OF_WEEK, 3);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                    case "수":
+                        calendar.set(Calendar.DAY_OF_WEEK, 4);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                    case "목":
+                        calendar.set(Calendar.DAY_OF_WEEK, 5);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                    case "금":
+                        calendar.set(Calendar.DAY_OF_WEEK, 6);
+                        calendar.set(Calendar.HOUR, Integer.parseInt(time.substring(0,2)));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time.substring(2,4)));
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        break;
+                }
+            }
+
+            //calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 12, 18, 0);
 
             //알람 예약
-            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+            //am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+            Calendar now = Calendar.getInstance();
+            now.set(Calendar.SECOND, 0);
+            now.set(Calendar.MILLISECOND, 0);
+            if(calendar.before(now)){
+                calendar.add(Calendar.DATE, 7);
+            }
+
+            //알람 매주 스케줄따라 반복
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 7*24*60^60*1000, sender);
+            //알람 한번만
+            //am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+
         }
     }
 
@@ -283,14 +355,24 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(jsonArray);
                 int count=0;
                 String courseSchedule;
+                String courseTitle;
+                String courseID2;
+                String courseDivide;
                 while (count<jsonArray.length()){
                     JSONObject object = jsonArray.getJSONObject(count);
                     courseSchedule = object.getString("scheduleTime");
                     scheduleTime.add(courseSchedule);
+                    courseTitle = object.getString("courseTitle");
+                    courseID2 = object.getString("courseID");
+                    courseDivide = object.getString("courseDivide");
+                    course_Title.add(courseID2);
+                    course_Title.add(courseTitle);
+                    course_Title.add(courseDivide);
                     count++;
                 }
-                System.out.println("2222222222");
+                System.out.println("2222222222************************");
                 System.out.println(scheduleTime);
+                System.out.println(course_Title);
             } catch (Exception e) {
                 e.printStackTrace();
             }

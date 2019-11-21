@@ -19,7 +19,6 @@ public class AddRequest extends StringRequest {
         map.put("userID", userID);
         map.put("courseID", courseID);
         map.put("userName", userName);
-
     }
 
     @Override

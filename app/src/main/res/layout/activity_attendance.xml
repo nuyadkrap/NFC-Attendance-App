@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="나의 출석현황"
+            android:text="출석현황"
             android:textStyle="bold"
             android:textSize="20dp"
             tools:layout_editor_absoluteX="160dp"
@@ -45,15 +45,37 @@
             android:textSize="15dp"
             android:textStyle="bold"></Button>
 
+        <Button
+            android:id="@+id/selectAll"
+            android:layout_width="136dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="25dp"
+            android:text="전체 선택"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/absent"
+            android:layout_width="136dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="-33dp"
+            android:text="결석 처리"
+            android:visibility="invisible"/>
+
         <ListView
             android:id="@+id/attendListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="486dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
             android:divider="#ffffff"
             android:dividerHeight="10dp"
-            android:padding="5dp"></ListView>
+            android:padding="5dp"
+            android:choiceMode="multipleChoice">
+
+        </ListView>
 
 
     </LinearLayout>
@@ -61,8 +83,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:orientation="horizontal"
         android:background="#ffffff">
 
     </LinearLayout>

@@ -1,5 +1,5 @@
 package com.example.san;
-
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.content.Intent;
+import android.widget.Toast;
+import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,35 +27,31 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class DeleteListActivity extends AppCompatActivity {
-    //test
-
-    private ListView delete_ListView;
-    private DeleteListAdapter adapter;
-    private List<DeleteList> DeleteList;
+public class NoticeActivity extends AppCompatActivity{
+    private ListView noticeListView;
+    private NoticeAdapter adapter;
+    private List<Notice> Notice;
     private String userID = MainActivity.userID;
+    private String userState = MainActivity.userState;
     BackgroundTask task;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deletelist);
+        setContentView(R.layout.noticelist);
 
-
-        Intent intent = getIntent();
-
-        delete_ListView = (ListView) findViewById(R.id.delete_ListView);
-        DeleteList = new ArrayList<DeleteList>();
+        noticeListView = (ListView)findViewById(R.id.noticeListView);
+        Notice = new ArrayList<Notice>();
 
         //어댑터 초기화부분 userList와 어댑터를 연결해준다.
-        adapter = new DeleteListAdapter(getApplicationContext(), DeleteList, this);
-        delete_ListView.setAdapter(adapter);
+        adapter = new NoticeAdapter(getApplicationContext(), Notice);
+        noticeListView.setAdapter(adapter);
+
         task = new BackgroundTask();
         task.execute();
 
-
     }
-
 
     class BackgroundTask extends AsyncTask<Void, Void, String>
     {
@@ -63,7 +60,7 @@ public class DeleteListActivity extends AppCompatActivity {
         @Override
         protected  void onPreExecute() {
             try {
-                target = "http://san19.dothome.co.kr/DeleteList.php?userID=" + URLEncoder.encode(userID, "UTF-8");
+                target = "http://san19.dothome.co.kr/NoticeList.php?userID=" + URLEncoder.encode(userID, "UTF-8");
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -98,33 +95,32 @@ public class DeleteListActivity extends AppCompatActivity {
         @Override
         public void onPostExecute(String result) {
             try {
-                DeleteList.clear();
+                Notice.clear();
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
 
-                String courseID;
-                String courseTitle;
-                String courseTime;
-                String courseRoom;
+                String noticeName;
+                String noticeContent;
+                String noticeDate;
+                String userName;
                 while (count < jsonArray.length())
                 {
                     JSONObject object = jsonArray.getJSONObject(count);
 
-                    courseID = object.getString("courseID");
-                    courseTitle = object.getString("courseTitle");
-                    courseRoom = object.getString("courseRoom");
-                    courseTime = object.getString("courseTime");
-                    DeleteList deleteList = new DeleteList(courseID, courseTitle, courseRoom, courseTime);
-                    DeleteList.add(deleteList);
-                    adapter.notifyDataSetChanged();
+                    noticeName = object.getString("noticeName");
+                    noticeContent = object.getString("noticeContent");
+                    noticeDate = object.getString("noticeDate");
+                    userName = object.getString("userName");
+                    Notice noticeList = new Notice(noticeName, noticeContent, noticeDate, userName);
+                    Notice.add(noticeList);
                     count++;
                 }
                 if(count == 0)
                 {
                     AlertDialog dialog;
-                    AlertDialog.Builder builder = new AlertDialog.Builder(DeleteListActivity.this);
-                    dialog = builder.setMessage("조회된 강의가 없습니다.\n강의를 추가하세요.")
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NoticeActivity.this);
+                    dialog = builder.setMessage("공지사항이 없습니다")
                             .setNegativeButton("확인", null)
                             .create();
                     dialog.show();
@@ -137,12 +133,4 @@ public class DeleteListActivity extends AppCompatActivity {
 
 
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        delete_ListView.deferNotifyDataSetChanged();
-
-    }
 }
-//

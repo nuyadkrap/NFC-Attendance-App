@@ -1,79 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.san.CheckableLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants">
-
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+
+        >
 
         <LinearLayout
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
+
 
             <TextView
-                android:id="@+id/courseTitle"
+                android:id="@+id/noticeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="3dp"
-                android:text="강의 제목"
+                android:text="공지 제목"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/userID"
-                android:layout_width="wrap_content"
+                android:id="@+id/noticeContent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="3dp"
-                android:text="학번"
-                android:textColor="@color/colorPrimaryDark" />
+                android:text="공지 내용"
+                android:textColor="#000000"
 
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal">
             <TextView
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="3dp"
-                android:text="이름"
-                android:textColor="@color/colorPrimaryDark" />
-        </LinearLayout>
+                android:text="공지 작성자"
+                android:textColor="@color/colorPrimaryDark"
 
-        <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:orientation="horizontal">
-
+                />
             <TextView
-                android:id="@+id/attdState"
+                android:id="@+id/noticeDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
                 android:padding="3dp"
-                android:text="출석"
-                android:textColor="#000000" />
+                android:text="공지 날짜"
+                android:textColor="@color/colorPrimaryDark"
+                />
         </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/checkBox1"
-            android:layout_width="58dp"
-            android:layout_height="match_parent"
-            android:gravity="center" />
 
     </LinearLayout>
 
-</com.example.san.CheckableLinearLayout>
+</LinearLayout>
