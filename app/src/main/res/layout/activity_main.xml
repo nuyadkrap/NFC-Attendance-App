@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="60dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/at"
             tools:layout_editor_absoluteX="80dp"
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/pf"
                 android:visibility="invisible" />
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:layout_marginLeft="190dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/ts"
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="445dp"
@@ -173,7 +173,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="100dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/ob"
             tools:layout_editor_absoluteX="80dp"
@@ -185,12 +185,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/ats"
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="445dp" />
-
-
 
     </LinearLayout>
 
@@ -209,25 +207,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/btn_noticelist"
-            android:layout_width="280dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="470dp"
-            android:text="공지사항"
-            android:textStyle="bold"
-            android:textColor="#ffffffff"
-            android:textSize="20dp"
-            android:background="@drawable/login2"
-            />
+        <TextView
+            android:id="@+id/txt_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="260dp"
+            android:textSize="15dp"
+            android:text=" 공지사항 " />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
+            android:background="#ffffff">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/noticeListView"
+                android:dividerHeight="10dp"
+                android:divider="#ffffff"
+                android:padding="5dp"></ListView>
+
+        </LinearLayout>
         <Button
             android:id="@+id/logout"
             android:layout_width="280dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:text="로그아웃"
             android:textStyle="bold"
             android:textColor="#ffffffff"
