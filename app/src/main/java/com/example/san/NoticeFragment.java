@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -31,7 +34,6 @@ public class NoticeFragment extends Fragment {
     private NoticeAdapter adapter;
     private List<Notice> Notice;
     private String userID = MainActivity.userID;
-    private String userState = MainActivity.userState;
     BackgroundTask task;
 
 
@@ -45,12 +47,6 @@ public class NoticeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-        task = new BackgroundTask();
-        task.execute();
-
         }
 
 
@@ -60,13 +56,15 @@ public class NoticeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_notice, container, false);
-
         noticeListView = (ListView) v.findViewById(R.id.noticeListView);
         Notice = new ArrayList<Notice>();
 
-        //어댑터 초기화부분 userList와 어댑터를 연결해준다.
         adapter = new NoticeAdapter(getContext().getApplicationContext(), Notice);
         noticeListView.setAdapter(adapter);
+
+
+        task = new BackgroundTask();
+        task.execute();
 
         return inflater.inflate(R.layout.fragment_notice, container, false);
     }
@@ -79,16 +77,18 @@ public class NoticeFragment extends Fragment {
         @Override
         protected  void onPreExecute() {
             try {
-                target = "http://san19.dothome.co.kr/NoticeList.php?userID=" + URLEncoder.encode(userID, "UTF-8");
+                target = "http://san19.dothome.co.kr/NoticeList.php?userID=" + userID;
 
             } catch (Exception e) {
                 e.printStackTrace();
+
             }
         }
 
         @Override
         protected String doInBackground(Void... voids) {
             try {
+                System.out.println("제발");
                 URL url = new URL(target);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
