@@ -87,7 +87,7 @@ public class AttendanceAdapter extends BaseAdapter {
             courseTitle.setText(Attendance.get(i).getCourseTitle());
             courseTime.setText(Attendance.get(i).getCourseTime());
             attdState.setText(Attendance.get(i).getAttdState());
-
+//couseTime 추가
             //이렇게하면 findViewWithTag를 쓸 수 있음 없어도 되는 문장임
             v.setTag(Attendance.get(i).getCourseTitle());
             v.setTag(Attendance.get(i).getCourseTime());
