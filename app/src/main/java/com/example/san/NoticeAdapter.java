@@ -41,13 +41,13 @@ public class NoticeAdapter extends BaseAdapter {
         TextView noticeName = (TextView)v.findViewById(R.id.noticeName);
         TextView noticeContent = (TextView)v.findViewById(R.id.noticeContent);
         TextView noticeDate = (TextView)v.findViewById(R.id.noticeDate) ;
-        TextView userName = (TextView)v.findViewById(R.id.userName) ;
+        TextView pfName = (TextView)v.findViewById(R.id.pfName) ;
 
         //  userID.setText(userList.get(i).getUserID());
         noticeName.setText(NoticeList.get(i).getNoticeName());
         noticeContent.setText(NoticeList.get(i).getNoticeContent());
         noticeDate.setText(NoticeList.get(i).getNoticeDate());
-        userName.setText(NoticeList.get(i).getUserName());
+        pfName.setText(NoticeList.get(i).getPfName());
         //이렇게하면 findViewWithTag를 쓸 수 있음 없어도 되는 문장임
         // v.setTag(NoticeList.get(i).getCourseTitle());
 

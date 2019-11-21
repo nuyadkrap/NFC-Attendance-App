@@ -39,7 +39,7 @@ public class NoticeActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.noticelist);
+        setContentView(R.layout.activity_main);
 
         noticeListView = (ListView)findViewById(R.id.noticeListView);
         Notice = new ArrayList<Notice>();
@@ -103,7 +103,7 @@ public class NoticeActivity extends AppCompatActivity{
                 String noticeName;
                 String noticeContent;
                 String noticeDate;
-                String userName;
+                String pfName;
                 while (count < jsonArray.length())
                 {
                     JSONObject object = jsonArray.getJSONObject(count);
@@ -111,8 +111,8 @@ public class NoticeActivity extends AppCompatActivity{
                     noticeName = object.getString("noticeName");
                     noticeContent = object.getString("noticeContent");
                     noticeDate = object.getString("noticeDate");
-                    userName = object.getString("userName");
-                    Notice noticeList = new Notice(noticeName, noticeContent, noticeDate, userName);
+                    pfName = object.getString("pfName");
+                    Notice noticeList = new Notice(noticeName, noticeContent, noticeDate, pfName);
                     Notice.add(noticeList);
                     count++;
                 }

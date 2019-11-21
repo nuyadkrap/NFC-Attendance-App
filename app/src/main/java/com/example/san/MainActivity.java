@@ -20,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,16 +36,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv_id, tv_name;
+    private ListView noticeListView;
+    private NoticeAdapter adapter;
+    private List<Notice> noticeList;
+
     public static String userID, userState, userName;
     public static ArrayList<String> scheduleTime = new ArrayList<String>();
     public static ArrayList<String> course_Title = new ArrayList<String>();
 
-
-    Button btn_attend, btn_attendance, btn_time, btn_course,btn_noticelist, notice, logout;
+    Button btn_attend, btn_attendance, btn_time, btn_course, notice, logout;
 
     private static int ONE_MINUTE = 5626;
 
@@ -98,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        noticeListView = (ListView)findViewById(R.id.noticeListView);
+        noticeList = new ArrayList<Notice>();
+        adapter = new NoticeAdapter(getApplicationContext(),noticeList);
+        noticeListView.setAdapter(adapter);
 
         userID = getIntent().getStringExtra("userID");
         userState = getIntent().getStringExtra("userState");
@@ -176,14 +186,14 @@ public class MainActivity extends AppCompatActivity {
                 // startActivity (intent4);
             }
         });
-        btn_noticelist = findViewById(R.id.btn_noticelist);
-        btn_noticelist.setOnClickListener(new View.OnClickListener() {
+        /*btn_noticelist = findViewById(R.id.btn_noticelist);
+        btn_noticelist.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
                 startActivityForResult(intent, 104);
             }
-        });
+        });*/
 
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -357,6 +367,7 @@ public class MainActivity extends AppCompatActivity {
                 String courseSchedule;
                 String courseTitle;
                 String courseID2;
+                String noticeName,noticeContent,noticeDate,pfName;
                 while (count<jsonArray.length()){
                     JSONObject object = jsonArray.getJSONObject(count);
                     courseSchedule = object.getString("scheduleTime");
@@ -365,11 +376,17 @@ public class MainActivity extends AppCompatActivity {
                     courseID2 = object.getString("courseID");
                     course_Title.add(courseID2);
                     course_Title.add(courseTitle);
+
+                    noticeName = object.getString("noticeName");
+                    noticeContent = object.getString("noticeContent");
+                    noticeDate=object.getString("noticeDate");
+                    pfName=object.getString("pfName");
+                    Notice notice = new Notice(noticeName,noticeContent,noticeDate,pfName);
+                    noticeList.add(notice);
                     count++;
                 }
                 System.out.println("2222222222************************");
-                System.out.println(scheduleTime);
-                System.out.println(course_Title);
+                System.out.println(noticeList);
             } catch (Exception e) {
                 e.printStackTrace();
             }

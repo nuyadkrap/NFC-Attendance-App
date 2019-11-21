@@ -4,14 +4,14 @@ public class Notice {
     String noticeName;
     String noticeContent;
     String noticeDate;
-    String userName;
+    String pfName;
 
     public Notice(String noticeName, String noticeContent, String noticeDate, String userName) {
 
         this.noticeName = noticeName;
         this.noticeContent= noticeContent;
         this.noticeDate = noticeDate;
-        this.userName = userName;
+        this.pfName = pfName;
     }
 
     public String getNoticeName(){
@@ -32,10 +32,10 @@ public class Notice {
     public void setNoticeDate(String noticeDate){
         this.noticeDate =noticeDate;}
 
-    public String getUserName(){
-        return userName;}
+    public String getPfName(){
+        return pfName;}
 
-    public void setUserName(String UserName){
-        this.userName =userName;}
+    public void setPfName(String UserName){
+        this.pfName =pfName;}
 
 }
