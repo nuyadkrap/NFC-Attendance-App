@@ -380,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
                     noticeList.add(notice);
                     count++;
                 }
-                System.out.println("2222222222************************");
+                System.out.println("2222222222**********************");
                 System.out.println(noticeList);
             } catch (Exception e) {
                 e.printStackTrace();
