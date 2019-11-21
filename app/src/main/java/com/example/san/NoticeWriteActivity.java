@@ -58,11 +58,12 @@ public class NoticeWriteActivity extends AppCompatActivity {
         noticeContent = findViewById(R.id.noticeContent); //공지 내용
 
         course_Title = getIntent().getStringArrayListExtra("courseTitle");
-
+        System.out.println("course_Title");
+        System.out.println(course_Title);
         spinner = findViewById(R.id.notice_course);
         ArrayList<String> CourseTitle = new ArrayList<String>();
-        for(int i=0; i<course_Title.size();i+=2) {
-            CourseTitle.add(course_Title.get(i));
+        for(int i=1; i<course_Title.size();i+=3) {
+            CourseTitle.add(course_Title.get(i)+"_"+course_Title.get(i+1));
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CourseTitle);
         spinner.setAdapter(adapter);
@@ -74,8 +75,14 @@ public class NoticeWriteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = noticeName.getText().toString();
                 String content = noticeContent.getText().toString();
-                String course = spinner.getSelectedItem().toString();
-                System.out.println("course:");
+                String course="";
+
+                for(int i=1; i<course_Title.size();i+=3){
+                    if(course_Title.get(i).equals(spinner.getSelectedItem().toString().split("_")[0])){
+                        course = course_Title.get(i-1);
+                    }
+                }
+                System.out.println("course");
                 System.out.println(course);
                 if(name.equals("") || content.equals("") || course.equals("")) {
 

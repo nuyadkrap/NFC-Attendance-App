@@ -357,14 +357,17 @@ public class MainActivity extends AppCompatActivity {
                 String courseSchedule;
                 String courseTitle;
                 String courseID2;
+                String courseDivide;
                 while (count<jsonArray.length()){
                     JSONObject object = jsonArray.getJSONObject(count);
                     courseSchedule = object.getString("scheduleTime");
                     scheduleTime.add(courseSchedule);
                     courseTitle = object.getString("courseTitle");
                     courseID2 = object.getString("courseID");
+                    courseDivide = object.getString("courseDivide");
                     course_Title.add(courseID2);
                     course_Title.add(courseTitle);
+                    course_Title.add(courseDivide);
                     count++;
                 }
                 System.out.println("2222222222************************");
