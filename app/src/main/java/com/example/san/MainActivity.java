@@ -189,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent5 = new Intent(MainActivity.this, NoticeWriteActivity.class);
+                intent5.putExtra("userName", userName);
                 intent5.putExtra("courseTitle", course_Title);
                 startActivityForResult(intent5, 100);
             }

@@ -11,7 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+
 import android.widget.TextView;
+
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -38,26 +40,32 @@ public class NoticeWriteActivity extends AppCompatActivity {
     private EditText noticeName, noticeContent;
     private Button notice_write;
     private AlertDialog dialog;
-    private String userName;
     private Spinner spinner;
     private ArrayAdapter adapter;
-    private ArrayList<String> list = new ArrayList<>();
+
+    public static ArrayList<String> course_Title = new ArrayList<String>();
+
+    private String userName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice_write);
-
-        spinner = findViewById(R.id.notice_course);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
-        spinner.setAdapter(adapter);
-        System.out.println("테스트12345");
-        System.out.println(list);
+        final String userName = getIntent().getStringExtra("userName");
 
         noticeName = findViewById(R.id.noticeName); //공지 제목
         noticeContent = findViewById(R.id.noticeContent); //공지 내용
 
+        course_Title = getIntent().getStringArrayListExtra("courseTitle");
 
+        spinner = findViewById(R.id.notice_course);
+        ArrayList<String> CourseTitle = new ArrayList<String>();
+        for(int i=0; i<course_Title.size();i+=2) {
+            CourseTitle.add(course_Title.get(i));
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CourseTitle);
+        spinner.setAdapter(adapter);
         notice_write = findViewById(R.id.notice_write);
 
         notice_write.setOnClickListener(new View.OnClickListener() {
@@ -66,10 +74,11 @@ public class NoticeWriteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = noticeName.getText().toString();
                 String content = noticeContent.getText().toString();
+                String course = spinner.getSelectedItem().toString();
+                System.out.println("course:");
+                System.out.println(course);
+                if(name.equals("") || content.equals("") || course.equals("")) {
 
-                Intent intent = getIntent();
-                String userName = getIntent().getStringExtra("userName");
-                if (name.equals("") || content.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(NoticeWriteActivity.this);
                     dialog = builder.setMessage("빈칸없이 입력해 주세요")
                             .setNegativeButton("확인", null)
@@ -110,7 +119,10 @@ public class NoticeWriteActivity extends AppCompatActivity {
                 Date Date = new Date();
                 String date = dateFormat.format(Date);
 
-                NoticeWriteRequest noticeWriteRequest = new NoticeWriteRequest(name, content, date, userName, responseListener);
+
+                NoticeWriteRequest noticeWriteRequest = new NoticeWriteRequest(name, content, date, userName, course, responseListener);
+
+
                 RequestQueue queue = Volley.newRequestQueue(NoticeWriteActivity.this);
                 queue.add(noticeWriteRequest);
 
@@ -118,68 +130,5 @@ public class NoticeWriteActivity extends AppCompatActivity {
         });
     }
 
-    class BackgroundTask extends AsyncTask<Void, Void, String>
-    {
-        String target;
 
-        @Override
-        protected  void onPreExecute() {
-            try {
-                target = "http://san19.dothome.co.kr/SpinnerList.php?userName=" + userName;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            try {
-                URL url = new URL(target);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));//getInputStream 으로 받은 데이터중, 문자(char)만 필터링하는 과정.
-                String temp;
-                StringBuilder stringBuilder = new StringBuilder();
-                while((temp = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(temp + "\n");
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return stringBuilder.toString().trim();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) { super.onProgressUpdate(); }
-
-        @Override
-        public void onPostExecute(String result) {
-            try {
-                JSONObject jsonObject = new JSONObject(result);
-                JSONArray jsonArray = jsonObject.getJSONArray("response");
-                int count = 0;
-
-                String courseTitle;
-
-                while (count < jsonArray.length())
-                {
-                    JSONObject object = jsonArray.getJSONObject(count);
-
-                    courseTitle = object.getString("courseTitle");
-                    list.add(courseTitle);
-                    System.out.println("xptmxm");
-                    System.out.println("courseTitle");
-                    count++;
-                }
-
-                adapter.notifyDataSetChanged();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-}
 }
