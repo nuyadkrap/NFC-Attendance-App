@@ -103,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+/*
         noticeListView = (ListView)findViewById(R.id.noticeListView);
         noticeList = new ArrayList<Notice>();
         adapter = new NoticeAdapter(getApplicationContext(),noticeList);
         noticeListView.setAdapter(adapter);
-
+*/
         userID = getIntent().getStringExtra("userID");
         userState = getIntent().getStringExtra("userState");
         tv_id = findViewById(R.id.tv_id);
@@ -120,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
         tv_id.setText(userID);
         tv_name.setText(userName);
+
+
 
         task = new BackgroundTask();
         task.execute();
@@ -360,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
                 String courseTitle;
                 String courseID2;
                 String courseDivide;
-                String noticeName,noticeContent,noticeDate,pfName;
+
                 while (count<jsonArray.length()){
                     JSONObject object = jsonArray.getJSONObject(count);
                     courseSchedule = object.getString("scheduleTime");
@@ -371,17 +373,8 @@ public class MainActivity extends AppCompatActivity {
                     course_Title.add(courseID2);
                     course_Title.add(courseTitle);
                     course_Title.add(courseDivide);
-
-                    noticeName = object.getString("noticeName");
-                    noticeContent = object.getString("noticeContent");
-                    noticeDate=object.getString("noticeDate");
-                    pfName=object.getString("pfName");
-                    Notice notice = new Notice(noticeName,noticeContent,noticeDate,pfName);
-                    noticeList.add(notice);
                     count++;
                 }
-                System.out.println("2222222222**********************");
-                System.out.println(noticeList);
             } catch (Exception e) {
                 e.printStackTrace();
             }
