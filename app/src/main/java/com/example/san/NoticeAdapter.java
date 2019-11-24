@@ -14,6 +14,8 @@ public class NoticeAdapter extends BaseAdapter {
     public NoticeAdapter(Context context, List<Notice> NoticeList){
         this.context = context;
         this.NoticeList = NoticeList;
+        System.out.println("여기");
+        System.out.println(NoticeList.size());
     }
     //출력할 총갯수를 설정하는 메소드
     @Override
@@ -48,8 +50,10 @@ public class NoticeAdapter extends BaseAdapter {
         noticeContent.setText(NoticeList.get(i).getNoticeContent());
         noticeDate.setText(NoticeList.get(i).getNoticeDate());
         pfName.setText(NoticeList.get(i).getPfName());
+
         //이렇게하면 findViewWithTag를 쓸 수 있음 없어도 되는 문장임
-        // v.setTag(NoticeList.get(i).getCourseTitle());
+
+        v.setTag(NoticeList.get(i).getNoticeContent());
 
         //만든뷰를 반환함
         return v;

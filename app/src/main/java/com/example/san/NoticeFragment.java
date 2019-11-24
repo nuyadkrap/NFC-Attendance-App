@@ -26,23 +26,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
-public class NoticeFragment extends Fragment {
+public class  NoticeFragment extends Fragment {
     private ListView noticeListView;
     private NoticeAdapter adapter;
-    private List<Notice> Notice;
+    private List<Notice> Notice = new ArrayList<>();
     private String userID = MainActivity.userID;
     BackgroundTask task;
-
-
 
     public NoticeFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,19 +51,20 @@ public class NoticeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View v = inflater.inflate(R.layout.fragment_notice, container, false);
-        noticeListView = (ListView) v.findViewById(R.id.noticeListView);
-        Notice = new ArrayList<Notice>();
-
-        adapter = new NoticeAdapter(getContext().getApplicationContext(), Notice);
-        noticeListView.setAdapter(adapter);
-
-
+        //Notice = new ArrayList<Notice>();
         task = new BackgroundTask();
         task.execute();
 
-        return inflater.inflate(R.layout.fragment_notice, container, false);
+        View v = inflater.inflate(R.layout.fragment_notice, container, false);
+        noticeListView = (ListView) v.findViewById(R.id.noticeListView);
+        //Notice = new ArrayList<Notice>();
+
+        System.out.println("Notice 길이");
+        System.out.println(Notice.size());
+//        adapter = new NoticeAdapter(getContext().getApplicationContext(), Notice);
+//        noticeListView.setAdapter(adapter);
+
+        return v;
     }
 
 
@@ -114,7 +112,6 @@ public class NoticeFragment extends Fragment {
         @Override
         public void onPostExecute(String result) {
             try {
-                Notice.clear();
                 System.out.println("알아보기 쉽게");
                 System.out.println(result);
 
@@ -136,6 +133,11 @@ public class NoticeFragment extends Fragment {
                     noticeContent = object.getString("noticeContent");
                     noticeDate = object.getString("noticeDate");
                     pfName = object.getString("pfName");
+                    System.out.println("공지사항");
+                    System.out.println(noticeName);
+                    System.out.println(noticeContent);
+                    System.out.println(noticeDate);
+                    System.out.println(pfName);
                     Notice noticeList = new Notice(noticeName, noticeContent, noticeDate, pfName);
                     Notice.add(noticeList);
                     count++;
@@ -149,6 +151,10 @@ public class NoticeFragment extends Fragment {
                             .create();
                     dialog.show();
                 }
+                System.out.println("rrrrrrrrr");
+                System.out.println(Notice.size());
+                adapter = new NoticeAdapter(getContext().getApplicationContext(), Notice);
+                noticeListView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             } catch (Exception e) {
                 e.printStackTrace();
