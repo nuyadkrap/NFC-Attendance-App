@@ -206,7 +206,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 int count = 0;
                 String userName;
                 String userID2;
-                String courseTitle2;
+                String courseTitle2="";
                 String attdState;
                 String courseTime="";
 
@@ -214,7 +214,6 @@ public class AttendanceActivity extends AppCompatActivity {
                 {
                     JSONObject object = jsonArray.getJSONObject(count);
 
-                    courseTitle2 = object.getString("courseTitle");
                     if(attendSpinner.getSelectedItem().toString().equals("미출결")){
                         attdState = "";
                         courseTime = "";
@@ -222,6 +221,7 @@ public class AttendanceActivity extends AppCompatActivity {
                     else{
                         attdState = object.getString("attdState");
                         courseTime = object.getString("courseTime");
+                        courseTitle2 = object.getString("courseTitle");
                     }
 
                     if (userState.equals("교수"))
