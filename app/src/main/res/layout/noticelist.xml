@@ -34,7 +34,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/noticeListView"
+            android:id="@+id/noticeListVie"
             android:dividerHeight="10dp"
             android:divider="#ffffff"
             android:padding="5dp"></ListView>

@@ -81,13 +81,11 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case 100:
             case 104:
+            case 102:
                 userState = data.getStringExtra("userState");
                 break;
 
             case 101:
-                break;
-
-            case 102:
                 break;
 
             case 103:
@@ -121,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
         tv_id.setText(userID);
         tv_name.setText(userName);
 
+        Intent intent9 = new Intent(MainActivity.this, NoticeFragment.class);
+        intent9.putExtra("userID", userID);
 
 
         task = new BackgroundTask();
