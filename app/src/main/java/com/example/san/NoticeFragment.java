@@ -160,11 +160,7 @@ public class  NoticeFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-
-
     }
-
-
 
 }
 

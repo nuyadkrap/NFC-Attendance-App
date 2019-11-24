@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 102:
+                userState = data.getStringExtra("userState");
                 break;
 
             case 103:
@@ -115,13 +116,11 @@ public class MainActivity extends AppCompatActivity {
         tv_name = findViewById(R.id.tv_name);
 
         Intent intent = getIntent();
-        String userID = intent.getStringExtra("userID");
+        //String userID = intent.getStringExtra("userID");
         userName = intent.getStringExtra("userName");
 
         tv_id.setText(userID);
         tv_name.setText(userName);
-
-
 
         task = new BackgroundTask();
         task.execute();

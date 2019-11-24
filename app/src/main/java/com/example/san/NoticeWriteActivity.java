@@ -107,6 +107,7 @@ public class NoticeWriteActivity extends AppCompatActivity {
                                 Intent intent = new Intent();
                                 intent.putExtra("noticeName", noticeName.getText().toString());
                                 intent.putExtra("noticeContent", noticeContent.getText().toString());
+                                intent.putExtra("userState", MainActivity.userState);
                                 setResult(1, intent);
                                 finish();
                                 //        startActivity(intent);
