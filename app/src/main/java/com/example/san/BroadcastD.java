@@ -31,7 +31,7 @@ public class BroadcastD extends BroadcastReceiver {
 
         Notifi = new Notification.Builder(context, channelId)
                 .setContentTitle("5분 후 수업시작입니다")
-                .setContentText("Content Text")
+                .setContentText("실무중심산학협력프로젝트2(캡스톤디자인-SW)")
                 .setSmallIcon(R.drawable.on) //아이콘을 제대로 설정하지 않으면 오류메시지 없이 작동하지 않으니 주의할 것!!!
                 .setTicker("알림!!!")
                 .setContentIntent(pendingIntent)

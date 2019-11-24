@@ -42,7 +42,6 @@ public class NoticeWriteActivity extends AppCompatActivity {
     private AlertDialog dialog;
     private Spinner spinner;
     private ArrayAdapter adapter;
-    private String userState = MainActivity.userState;
 
     public static ArrayList<String> course_Title = new ArrayList<String>();
 
@@ -108,7 +107,7 @@ public class NoticeWriteActivity extends AppCompatActivity {
                                 Intent intent = new Intent();
                                 intent.putExtra("noticeName", noticeName.getText().toString());
                                 intent.putExtra("noticeContent", noticeContent.getText().toString());
-                                intent.putExtra("userState", userState);
+                                intent.putExtra("userState", MainActivity.userState);
                                 setResult(1, intent);
                                 finish();
                                 //        startActivity(intent);
