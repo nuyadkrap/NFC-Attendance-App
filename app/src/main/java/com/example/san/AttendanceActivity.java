@@ -142,7 +142,7 @@ public class AttendanceActivity extends AppCompatActivity {
         });
 
         System.out.println("**********2342342*********");
-        System.out.println(courseID);
+        System.out.println(courseID);//
 
     }
 
