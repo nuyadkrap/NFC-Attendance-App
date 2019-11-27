@@ -65,7 +65,6 @@ public class NoticeWriteActivity extends AppCompatActivity {
         for(int i=1; i<course_Title.size();i+=3) {
             CourseTitle.add(course_Title.get(i)+"_"+course_Title.get(i+1));
         }
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CourseTitle);
         spinner.setAdapter(adapter);
         notice_write = findViewById(R.id.notice_write);
@@ -138,6 +137,4 @@ public class NoticeWriteActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
