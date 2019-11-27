@@ -1,11 +1,12 @@
 package com.example.san;
 
 public class Attendance {
-    String userID;
+
     String courseTitle;
+    String userID;
+    String userName;
     String courseTime;
     String attdState;
-    String userName;
 
     public String getUserID() {
         return userID;
@@ -51,12 +52,12 @@ public class Attendance {
         this.attdState = attdState;
     }
 
-    public Attendance(String courseTitle, String courseTime, String attdState, String userID, String userName) {
+    public Attendance(String courseTitle, String userID, String userName, String courseTime, String attdState) {
         this.courseTitle = courseTitle;
-        this.courseTime = courseTime;
-        this.attdState = attdState;
         this.userID = userID;
         this.userName = userName;
+        this.courseTime = courseTime;
+        this.attdState = attdState;
     }
 
 }

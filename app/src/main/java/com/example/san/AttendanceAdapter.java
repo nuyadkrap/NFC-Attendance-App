@@ -51,18 +51,17 @@ public class AttendanceAdapter extends BaseAdapter {
         if(userState.equals("교수")){
             View v = View.inflate(context, R.layout.checkattd, null);
 
-            TextView userID = (TextView)v.findViewById(R.id.userID);
             TextView courseTitle = (TextView) v.findViewById(R.id.courseTitle);
+            TextView userID = (TextView)v.findViewById(R.id.userID);
+            TextView userName = (TextView) v.findViewById(R.id.userName);
             TextView courseTime = (TextView) v.findViewById(R.id.courseTime);
             TextView attdState = (TextView) v.findViewById(R.id.attdState);
-            TextView userName = (TextView) v.findViewById(R.id.userName);
 
-
-            userID.setText(Attendance.get(i).getUserID());
             courseTitle.setText(Attendance.get(i).getCourseTitle());
+            userID.setText(Attendance.get(i).getUserID());
+            userName.setText(Attendance.get(i).getUserName());
             courseTime.setText(Attendance.get(i).getCourseTime());
             attdState.setText(Attendance.get(i).getAttdState());
-            userName.setText(Attendance.get(i).getUserName());
 
             v.setTag(Attendance.get(i).getUserID());
             v.setTag(Attendance.get(i).getCourseTitle());

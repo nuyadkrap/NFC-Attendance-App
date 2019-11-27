@@ -142,7 +142,6 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("userID", userID);
                                 intent.putExtra("userName", userName);
                                 intent.putExtra("userState", userState);
-
                                 startActivity(intent);
                             }
 

@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -49,6 +50,7 @@ public class AttendanceActivity extends AppCompatActivity {
     private AttendanceAdapter adapter;
     private List<Attendance> Attendance;
     private String courseID, course_room;
+    TextView AllStudentNumber;
     Button selectAll, absent;
 
     @Override
@@ -66,6 +68,7 @@ public class AttendanceActivity extends AppCompatActivity {
         attendAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.attend));
         attendSpinner.setAdapter(attendAdapter);
 
+        AllStudentNumber = findViewById(R.id.AllStudentNumber);
 
         attendListView = (ListView) findViewById(R.id.attendListView);
         Attendance = new ArrayList<Attendance>();
@@ -228,7 +231,7 @@ public class AttendanceActivity extends AppCompatActivity {
                     {
                         userID2 = object.getString("userID");
                         userName = object.getString("userName");
-                        Attendance attd = new Attendance(userID2, course_title, courseTime, attdState, userName);
+                        Attendance attd = new Attendance(course_title, userID2, userName, courseTime, attdState);
                         Attendance.add(attd);
                         count++;
                     }
@@ -251,6 +254,7 @@ public class AttendanceActivity extends AppCompatActivity {
                             .create();
                     dialog.show();
                 }
+                AllStudentNumber.setText("총 학생수:"+Attendance.size());
                 adapter.notifyDataSetChanged();
             } catch (Exception e) {
                 e.printStackTrace();
