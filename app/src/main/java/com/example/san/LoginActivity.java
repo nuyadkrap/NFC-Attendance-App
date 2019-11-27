@@ -36,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_register = findViewById(R.id.btn_register);
 
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent2 = new Intent(LoginActivity.this, NoticeFragment.class);
+        intent2.putExtra("userID",userID);
 
 //        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
 //        loginID = auto.getString("inputID", null);

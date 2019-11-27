@@ -1,6 +1,7 @@
 package com.example.san;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,8 +35,9 @@ public class  NoticeFragment extends Fragment {
     private ListView noticeListView;
     private NoticeAdapter adapter;
     private List<Notice> Notice = new ArrayList<>();
-    private String userID = MainActivity.userID;
+    private String userID;
     BackgroundTask task;
+
 
     public NoticeFragment() {
         // Required empty public constructor
@@ -52,6 +54,17 @@ public class  NoticeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //Notice = new ArrayList<Notice>();
+
+
+        Intent intent = getActivity().getIntent();
+        try {
+            userID = intent.getStringExtra("userID");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("userID: userID: userID");
+        System.out.println(userID);
+
         task = new BackgroundTask();
         task.execute();
 
