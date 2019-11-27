@@ -63,6 +63,13 @@
             android:text="결석 처리"
             android:visibility="invisible"/>
 
+        <TextView
+            android:id="@+id/AllStudentNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="10dp" />
+
         <ListView
             android:id="@+id/attendListView"
             android:layout_width="match_parent"
