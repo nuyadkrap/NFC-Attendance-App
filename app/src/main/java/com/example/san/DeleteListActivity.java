@@ -35,11 +35,14 @@ public class DeleteListActivity extends AppCompatActivity {
     private String userID = MainActivity.userID;
     BackgroundTask task;
 
+    TimetableActivity AActivity= (TimetableActivity)TimetableActivity.AActivity;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deletelist);
-
+        AActivity.finish();
 
         Intent intent = getIntent();
 
@@ -128,6 +131,7 @@ public class DeleteListActivity extends AppCompatActivity {
                             .setNegativeButton("확인", null)
                             .create();
                     dialog.show();
+                    adapter.notifyDataSetChanged();
                 }
                 adapter.notifyDataSetChanged();
             } catch (Exception e) {
@@ -137,12 +141,4 @@ public class DeleteListActivity extends AppCompatActivity {
 
 
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        delete_ListView.deferNotifyDataSetChanged();
-
-    }
 }
-//

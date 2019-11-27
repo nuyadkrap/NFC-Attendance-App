@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class DeleteListAdapter extends BaseAdapter {
     private Activity parent;
     private String userID = MainActivity.userID;
     private List<String> courseIDLIst;
+
+
 
     public DeleteListAdapter(Context context, List<DeleteList> DeleteList, DeleteListActivity parent){
         this.context = context;
@@ -92,12 +95,12 @@ public class DeleteListAdapter extends BaseAdapter {
                                 JSONObject jsonObject = new JSONObject(response);
                                 boolean success = jsonObject.getBoolean("success");
                                 if (success) {
-
                                     AlertDialog.Builder builder = new AlertDialog.Builder(parent);
                                     AlertDialog dialog = builder.setMessage("강의가 삭제되었습니다.")
                                             .setPositiveButton("확인", null)
                                             .create();
                                     dialog.show();
+                                    DeleteList.remove(i);
                                     notifyDataSetChanged();
                                 } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(parent);

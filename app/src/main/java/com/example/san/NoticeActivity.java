@@ -114,6 +114,7 @@ public class NoticeActivity extends AppCompatActivity{
                     pfName = object.getString("pfName");
                     Notice noticeList = new Notice(noticeName, noticeContent, noticeDate, pfName);
                     Notice.add(noticeList);
+                    adapter.notifyDataSetChanged();
                     count++;
                 }
                 if(count == 0)
