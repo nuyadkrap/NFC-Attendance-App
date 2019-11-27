@@ -74,6 +74,8 @@ public class  NoticeFragment extends Fragment {
 
         System.out.println("Notice 길이");
         System.out.println(Notice.size());
+        System.out.println("userID");
+        System.out.println(userID);
 //        adapter = new NoticeAdapter(getContext().getApplicationContext(), Notice);
 //        noticeListView.setAdapter(adapter);
 

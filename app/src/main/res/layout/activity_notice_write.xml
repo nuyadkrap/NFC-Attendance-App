@@ -52,16 +52,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/noticeName"
         android:layout_gravity="center"
-        android:hint="제목"
-            />
+        android:hint="제목" />
 
         <EditText
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:id="@+id/noticeContent"
             android:layout_gravity="center"
-            android:hint="내용"
-            />
+            android:hint="내용" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

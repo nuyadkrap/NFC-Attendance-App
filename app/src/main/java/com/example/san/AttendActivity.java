@@ -151,9 +151,7 @@ public class AttendActivity extends AppCompatActivity {
             if(time.charAt(i) == ':')
                 count++;
         }
-        System.out.println("확인");
-        System.out.println(time);
-        System.out.println(count);
+
         day1 = time.split(":")[0];
         scheduleTime1 = time.split(":")[1];
         for(int i=0;i<scheduleTime1.length();i++) {
@@ -195,9 +193,6 @@ public class AttendActivity extends AppCompatActivity {
         list2.remove("");
         timeArr1 = list1.toArray(new String[list1.size()]);
         timeArr2 = list2.toArray(new String[list2.size()]);
-        System.out.println("hhhhhhhhhhh");
-        System.out.println(Arrays.toString(timeArr1));
-        System.out.println(Arrays.toString(timeArr2));
 
         try {
             reqTime1 = timeFormat.parse(timeTable[Integer.parseInt(timeArr1[0])-1]);   //수업시작 30분전
@@ -215,12 +210,6 @@ public class AttendActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        System.out.println("ggg2424242424");
-        System.out.println(reqTime1);
-        System.out.println(reqTime2);
-        System.out.println(reqTime3);
-        System.out.println(reqTime4);
-        System.out.println(date);
 
         reqDateTime1 = reqTime1.getTime();
         reqDateTime2 = reqTime2.getTime();

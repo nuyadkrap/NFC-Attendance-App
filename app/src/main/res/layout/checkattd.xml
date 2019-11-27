@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="3dp"
-                android:text="출석"
+                android:text="출석 여부"
                 android:textColor="#000000" />
         </LinearLayout>
 

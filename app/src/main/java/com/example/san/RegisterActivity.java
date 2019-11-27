@@ -1,6 +1,5 @@
 package com.example.san;
 
-import androidx.annotation.IdRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 

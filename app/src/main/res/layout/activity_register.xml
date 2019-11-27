@@ -102,26 +102,6 @@
         app:layout_constraintTop_toBottomOf="@+id/et_pass" />
 
 
-<!--
-    <EditText
-        android:id="@+id/et_major"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="전공"
-        android:layout_gravity="center"
-        android:padding="10dp"
-        android:textColor="#ffffffff"
-        android:textColorHint="#ffffffff"
-        android:inputType="textPersonName"
-        android:background="@color/colorPrimary"
-        android:drawableStart="@drawable/ic_school_black_24dp"
-        android:drawableLeft="@drawable/ic_school_black_24dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_name"
-        app:layout_constraintStart_toStartOf="@+id/et_name"
-        app:layout_constraintTop_toBottomOf="@+id/et_name" />-->
-
         <Spinner
             android:id="@+id/et_major"
             android:layout_width="280dp"

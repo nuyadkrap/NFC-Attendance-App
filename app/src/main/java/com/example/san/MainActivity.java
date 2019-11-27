@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
             "1255", "1325", "1355", "1425", "1455", "1525", "1555", "1625", "1655", "1725",
             "1755", "1825", "1855", "1925", "1955", "2025"};
 
+    LoginActivity BActivity = (LoginActivity)LoginActivity.BActivity;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -81,17 +83,13 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case 100:
             case 104:
-                userState = data.getStringExtra("userState");
-                break;
-
-            case 101:
-                break;
-
             case 102:
                 userState = data.getStringExtra("userState");
                 break;
 
+            case 101:
             case 103:
+            case 110:
                 break;
 
             default:
@@ -104,13 +102,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         course_Title.clear();
-/*
+
         noticeListView = (ListView)findViewById(R.id.noticeListView);
         noticeList = new ArrayList<Notice>();
         adapter = new NoticeAdapter(getApplicationContext(),noticeList);
         noticeListView.setAdapter(adapter);
-*/
+
         userID = getIntent().getStringExtra("userID");
         userState = getIntent().getStringExtra("userState");
         tv_id = findViewById(R.id.tv_id);
@@ -126,17 +125,22 @@ public class MainActivity extends AppCompatActivity {
         task = new BackgroundTask();
         task.execute();
 
+        BActivity.finish();
+
         notice = findViewById(R.id.notice);
         logout = findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 110);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
                 editor.clear();
                 editor.commit();
+                finish();
+                System.exit(0);
+                android.os.Process.killProcess(android.os.Process.myPid());
                 Toast.makeText(MainActivity.this, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -410,9 +414,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AppFinish () {
-        finish();
         System.exit(0);
         android.os.Process.killProcess(android.os.Process.myPid());
+        finish();
     }
 
 

@@ -134,6 +134,7 @@ public class NoticeWriteActivity extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(NoticeWriteActivity.this);
                 queue.add(noticeWriteRequest);
 
+
             }
         });
     }

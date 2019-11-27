@@ -1,8 +1,6 @@
 package com.example.san;
 
 import android.content.Context;
-import android.util.TypedValue;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 public class Schedule {

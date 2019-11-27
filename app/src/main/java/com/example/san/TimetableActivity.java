@@ -20,7 +20,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Arrays;
 
 public class TimetableActivity extends AppCompatActivity {
 
@@ -111,7 +110,7 @@ public class TimetableActivity extends AppCompatActivity {
                     URL url = new URL(target);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                     InputStream inputStream = httpURLConnection.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));//getInputStream 으로 받은 데이터중, 문자(char)만 필터링하는 과정.
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream)); //getInputStream 으로 받은 데이터중, 문자(char)만 필터링하는 과정.
                     String temp;
                     StringBuilder stringBuilder = new StringBuilder();
                     while((temp = bufferedReader.readLine()) != null) {
@@ -140,7 +139,7 @@ public class TimetableActivity extends AppCompatActivity {
                     String courseTime;
                     String courseTitle;
                     int courseID;
-                    System.out.println("------------------------------");
+
                     System.out.println(jsonArray.length());
                     while(count < jsonArray.length())
                     {

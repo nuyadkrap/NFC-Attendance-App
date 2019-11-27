@@ -230,8 +230,6 @@
 
         </LinearLayout>
 
-
-
         <Button
             android:id="@+id/logout"
             android:layout_width="280dp"

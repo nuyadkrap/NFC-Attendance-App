@@ -24,6 +24,7 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CourseListActivity extends AppCompatActivity {
 
     Spinner spinner;
